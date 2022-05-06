@@ -4,7 +4,7 @@ import { FaWpexplorer } from "react-icons/fa";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import "./Navigation/leftNav.css";
+import "./leftNav.css";
 const LeftNav = () => {
   return (
     <div className="navbar-container">
@@ -32,6 +32,7 @@ const LeftNav = () => {
         <CgProfile className="navbar-icons" />
           <h3>Profile</h3>
       </div> 
+      <button className="create-post-btn">Create New Post</button>
     </div>
   );
 };

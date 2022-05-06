@@ -1,0 +1,35 @@
+@import "../../styles.css";
+
+.post-container {
+  width: 30rem;
+  height: max-content;
+  justify-content: flex-end;
+}
+.post-card-icons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.post-card {
+  height: max-content;
+  padding-bottom: 1rem;
+  width: 350px;
+  left: 569px;
+  border: 1px solid black;
+}
+
+.post-card-profile-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post-card-profile-name h3 {
+  padding: 0.2rem;
+  margin-left: 1rem;
+}
+
+.post-card-icons:hover{
+    cursor: pointer;
+    color: var(--primary-color);
+}
