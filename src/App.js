@@ -1,10 +1,10 @@
 import "./App.css";
-import logo from "./logo.png";
+import {LeftNav} from "../src/Components/leftNav"
 
 function App() {
   return (
     <div className="App">
-      <h1>Social media</h1>
+      <LeftNav/>
     </div>
   );
 }

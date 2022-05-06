@@ -1,0 +1,17 @@
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  width: 317px;
+  height: 400px;
+  align-items: flex-start;
+  margin: 1rem;
+}
+
+.navbar-icons {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+.navbar-options {
+  display: flex;
+  align-items: center;
+}
