@@ -1,35 +1,47 @@
 @import "../../styles.css";
 
+
+
 .post-container {
-  width: 30rem;
-  height: max-content;
-  justify-content: flex-end;
+  width: 500px;
+  color: #1e293b;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border: 2px solid black;
 }
-.post-card-icons {
-  display: flex;
-  justify-content: space-evenly;
+.post-text {
+  text-align: left;
 }
-
-.post-card {
-  height: max-content;
-  padding-bottom: 1rem;
-  width: 350px;
-  left: 569px;
-  border: 1px solid black;
+.user-id {
+  color: red;
+  margin: 5px;
 }
-
-.post-card-profile-name {
+.post-bottom-icons {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.dis-col {
+  display: flex;
+  flex-direction: column;
+}
+.dis-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+.space-around {
+  justify-content: space-around;
+  align-content: center;
   align-items: center;
 }
 
-.post-card-profile-name h3 {
-  padding: 0.2rem;
-  margin-left: 1rem;
-}
-
-.post-card-icons:hover{
-    cursor: pointer;
-    color: var(--primary-color);
+.avatar-img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  margin: 2px;
 }
