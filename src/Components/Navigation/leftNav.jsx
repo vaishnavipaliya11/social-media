@@ -5,7 +5,9 @@ import { MdOutlineNotificationsActive } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import "./leftNav.css";
+import { useNavigate } from "react-router-dom";
 const LeftNav = () => {
+  const navigate = useNavigate()
   return (
     <div className="navbar-container">
       <div className="navbar-options">
@@ -18,19 +20,19 @@ const LeftNav = () => {
       </div>
       <div className="navbar-options">
         <BsBookmark className="navbar-icons" />
-         <h3>BookMark</h3>
+         <h3 onClick={()=> navigate("/bookmark")}>BookMark</h3>
       </div>
-      <div className="navbar-options">
+      <div className="navbar-options"  onClick={()=> navigate("/notification")}>
         <MdOutlineNotificationsActive className="navbar-icons" />
           <h3>Notification</h3>
       </div>
       <div className="navbar-options">
         <AiOutlineHeart className="navbar-icons" />
-          <h3>Liked</h3>
+          <h3 onClick={()=> navigate("/liked")}>Liked</h3>
       </div>
       <div className="navbar-options">
         <CgProfile className="navbar-icons" />
-          <h3>Profile</h3>
+          <h3 onClick={()=> navigate("/profile")}>Profile</h3>
       </div> 
       <button className="create-post-btn">Create New Post</button>
     </div>

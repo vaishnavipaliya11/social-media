@@ -1,19 +1,28 @@
 import "./App.css";
-import {LeftNav} from "./Components/Navigation/leftNav"
-import {Post} from "./Components/Post/Post"
+import { LeftNav } from "./Components/Navigation/leftNav";
+import { Post } from "./Components/Post/Post";
 import { Sidecard } from "./Components/sidecard/Sidecard";
+import { Bookmark } from "./Pages/bookmark/Bookmark";
+import { Liked } from "./Pages/liked/Liked";
 import { Profile } from "./Pages/profile/Profile";
+import {Notification} from "./Pages/notification/Notification"
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./Pages/login/Login";
+import { SignUp } from "./Pages/signup/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <LeftNav/>
-      <h2>post</h2>
-      <Post/>
-      <h2>profile</h2>
-      <Profile/>
-      <h1>sidecard</h1>
-      <Sidecard/>
+      <LeftNav />
+
+      <Routes>
+        <Route path="/liked" element={<Liked />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/notification" element={<Notification />} />
+        <Route path="/bookmark" element={<Bookmark />} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/sign" element={<SignUp/>}/>
+        </Routes>
     </div>
   );
 }
