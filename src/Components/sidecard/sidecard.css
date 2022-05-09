@@ -1,8 +1,9 @@
 .who-to-follow {
     border: 1px solid black;
-    width: 379px;
-    margin: 0 auto;
+    width: 23.66rem;
     padding: 0.5rem;
+    margin: 1rem;
+    height: max-content;
   }
 
   .dis-row {
@@ -34,7 +35,7 @@
   .btn-follow {
     border: none;
     background: transparent;
-    color: red;
+    color:var(--primary-color);
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;

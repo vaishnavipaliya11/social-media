@@ -2,7 +2,7 @@ import React from "react";
 
 export const Profile = () => {
   return (
-    <div>
+   
       <div className="user-profile">
         <img
           className="profile-img"
@@ -37,6 +37,6 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 };

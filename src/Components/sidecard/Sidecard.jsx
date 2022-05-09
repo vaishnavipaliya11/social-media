@@ -7,7 +7,7 @@ export const Sidecard = () => {
         <span className="wtofol">who to follow</span>{" "}
         <button className="btn-follow">show-more</button>
       </div>
-      <div className="dis-row space-around">
+      <div className="dis-row space-around mrg-med">
         {" "}
         <img
           className="avatar-img"

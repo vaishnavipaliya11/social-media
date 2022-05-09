@@ -25,3 +25,8 @@
   border-radius: 1rem;
   cursor: pointer;
 }
+
+.navbar-options :hover{
+  color: var(--primary-color);
+  cursor: pointer;
+}

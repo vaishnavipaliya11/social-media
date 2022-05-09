@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+.page-container{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  justify-content: space-between;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

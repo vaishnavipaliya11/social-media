@@ -13,16 +13,21 @@ import { SignUp } from "./Pages/signup/SignUp";
 function App() {
   return (
     <div className="App">
-      <LeftNav />
+    <div className="page-container">
+    <LeftNav />
+    <Routes>
+    <Route path="/liked" element={<Liked />} />
+    <Route path="/profile" element={<Profile />} />
+    <Route path="/notification" element={<Notification />} />
+    <Route path="/bookmark" element={<Bookmark />} />
+    <Route path="/login" element={<Login/>}/>
+    <Route path="/sign" element={<SignUp/>}/>
+    </Routes>
+    <Sidecard/>
+    </div>
+      
 
-      <Routes>
-        <Route path="/liked" element={<Liked />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/notification" element={<Notification />} />
-        <Route path="/bookmark" element={<Bookmark />} />
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/sign" element={<SignUp/>}/>
-        </Routes>
+     
     </div>
   );
 }
