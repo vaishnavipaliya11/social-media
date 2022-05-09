@@ -30,3 +30,13 @@
   color: var(--primary-color);
   cursor: pointer;
 }
+.top-nav{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.top-nav h3{
+  margin: 0.5rem;
+  cursor: pointer;
+}

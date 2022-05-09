@@ -10,9 +10,7 @@
 .page-container{
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
   justify-content: space-between;
-  margin-top: 2rem;
   overflow: hidden;
 }
 
