@@ -8,8 +8,9 @@ import { Profile } from "./Pages/profile/Profile";
 import { Notification } from "./Pages/notification/Notification";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "./Pages/login/Login";
-import { SignUp } from "./Pages/signup/SignUp";
+import {Signup} from "./Pages/signup/SignUp"
 import { TopNav } from "./Components/Navigation/topNav";
+import { Explore } from "./Pages/explore/explore";
 
 function App() {
   return (
@@ -19,12 +20,14 @@ function App() {
         <LeftNav />
        
         <Routes>
+        <Route path="/explore" element={<Explore/>}/>
           <Route path="/liked" element={<Liked />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/bookmark" element={<Bookmark />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sign" element={<SignUp />} />
+          <Route path="/sign" element={<Signup />} />
+          
         </Routes>
         <Sidecard />
       </div>
