@@ -1,0 +1,42 @@
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  width: 317px;
+  height: 400px;
+  align-items: flex-start;
+  margin: 1rem;
+}
+
+.navbar-icons {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+.navbar-options {
+  display: flex;
+  align-items: center;
+}
+.create-post-btn {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: white;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.navbar-options :hover{
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.top-nav{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.top-nav h3{
+  margin: 0.5rem;
+  cursor: pointer;
+}

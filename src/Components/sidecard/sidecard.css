@@ -1,0 +1,51 @@
+.who-to-follow {
+    border: 1px solid black;
+    width: 23.66rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    height: max-content;
+  }
+
+  .dis-row {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+  }
+  .space-around {
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+
+  .usr-id {
+    margin: 0;
+    color: gray;
+  }
+  .usr-name {
+    margin-bottom: 0;
+    color: #1e293b;
+  }
+
+  .dis-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-follow {
+    border: none;
+    background: transparent;
+    color:var(--primary-color);
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .avatar-img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    margin: 2px;
+  }
+  .wtofol {
+    color: #1e293b;
+  }

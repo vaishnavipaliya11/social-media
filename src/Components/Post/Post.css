@@ -1,0 +1,51 @@
+@import "../../styles.css";
+
+
+
+.post-container {
+  width: 500px;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border: 2px solid black;
+}
+.post-text {
+  text-align: left;
+}
+.user-id {
+  color: var(--primary-color);
+  margin: 5px;
+}
+.post-bottom-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.dis-col {
+  display: flex;
+  flex-direction: column;
+}
+.dis-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+.space-around {
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.avatar-img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.icon :hover{
+cursor: pointer;
+color: var(--primary-color);
+}
