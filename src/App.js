@@ -12,6 +12,7 @@ import {Signup} from "./Pages/signup/SignUp"
 import { TopNav } from "./Components/Navigation/topNav";
 import { Explore } from "./Pages/explore/explore";
 import { Home } from "./Pages/home/Home";
+import { PostModal } from "./Components/modal/postModal";
 
 function App() {
   return (
