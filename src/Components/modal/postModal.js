@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -9,8 +9,19 @@ import {
   ModalCloseButton,
   Button, Textarea
 } from "@chakra-ui/react";
+import { createPost } from "../../utilities/createPost";
+import { usePost } from "../../context/postContext";
+import { useAuth } from "../../context/authContext";
 
 export const PostModal = ({ isOpen, onClose }) => {
+  const [userTweet,setUserTweet]= useState("")
+  const {postState, postDispatch}= usePost()
+const {auth}= useAuth()
+
+  const tweetHandler = ()=>{
+    console.log(userTweet);
+    createPost(userTweet,postDispatch)
+  }
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -19,12 +30,16 @@ export const PostModal = ({ isOpen, onClose }) => {
           <ModalHeader>Let's Tweet</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Textarea 
+            <Textarea onChange={(e)=> setUserTweet(e.target.value)}
             placeholder="What's Happening ?"/>
           </ModalBody>
 
           <ModalFooter>
-            <Button variant="ghost">Tweet</Button>
+          {auth ?  <Button className="tweet-btn" variant="ghost"
+          onClick={tweetHandler}>Tweet</Button>
+        :<Button className="tweet-btn" variant="ghost"
+        onClick={tweetHandler} disabled> Tweet</Button> }
+           
           </ModalFooter>
         </ModalContent>
       </Modal>
