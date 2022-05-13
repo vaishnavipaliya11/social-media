@@ -9,9 +9,7 @@
   padding: 0.5rem;
   border: 2px solid black;
 }
-.post-text {
-  text-align: left;
-}
+
 .user-id {
   color: var(--primary-color);
   margin: 5px;

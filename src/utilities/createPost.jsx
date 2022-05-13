@@ -1,8 +1,7 @@
 import axios from "axios";
 import { getUserToken } from "./getUserToken";
 
-export const createPost = async (postDispatch,post) => {
-  console.log("from createpost ",post);
+export const createPost = async (post,postDispatch) => {
   try {
     const {data} = await axios({
       method: "POST",
@@ -13,6 +12,7 @@ export const createPost = async (postDispatch,post) => {
       },
       
     });
+    console.log(data.posts);
     postDispatch({type:"CREATE_POST",payload:data.posts})
    
   } catch (error) {

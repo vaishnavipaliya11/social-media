@@ -15,12 +15,13 @@ import { useAuth } from "../../context/authContext";
 
 export const PostModal = ({ isOpen, onClose }) => {
   const [userTweet,setUserTweet]= useState("")
-  const {postState, postDispatch}= usePost()
+  const {postDispatch}= usePost()
 const {auth}= useAuth()
 
   const tweetHandler = ()=>{
     console.log(userTweet);
-    createPost(userTweet,postDispatch)
+    createPost(userTweet,postDispatch,);
+    onClose();
   }
   return (
     <>
