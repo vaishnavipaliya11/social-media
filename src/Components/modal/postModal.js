@@ -19,7 +19,6 @@ export const PostModal = ({ isOpen, onClose }) => {
 const {auth}= useAuth()
 
   const tweetHandler = ()=>{
-    console.log(userTweet);
     createPost(userTweet,postDispatch,);
     onClose();
   }

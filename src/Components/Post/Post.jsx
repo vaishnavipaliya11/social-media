@@ -17,24 +17,31 @@ const Post = ({ post }) => {
   const { content, username } = post;
   return (
     <div className="post-container">
-      <span className="dis-row">
+    <div className="menu-container">
+    <span className="dis-row">
         <img
           className="avatar-img"
           src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
         />
         <h3 className="user-name">{username}</h3>
         <p className="user-id">@{username}</p>
+
+      
       </span>
-      <Menu className="menu-container">
-        <MenuButton as={Button}>Actions</MenuButton>
+
+      <span >   
+      <Menu >
+        <MenuButton as={Button}>:</MenuButton>
         <MenuList>
-          <MenuItem>Download</MenuItem>
-          <MenuItem>Create a Copy</MenuItem>
-          <MenuItem>Mark as Draft</MenuItem>
+          <MenuItem>Edit</MenuItem>
           <MenuItem>Delete</MenuItem>
-          <MenuItem>Attend a Workshop</MenuItem>
         </MenuList>
-      </Menu>
+      </Menu> </span>
+    </div>
+      
+    
+
+      
       <section className="post-text"> {content}</section>
       <span className="post-bottom-icons">
         <p className="icon">

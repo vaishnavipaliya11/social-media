@@ -10,7 +10,7 @@ export const Home = () => {
   console.log(createPost);
   return (
     <div className="post-display-container">
-
+      <p>home page</p>
       <PostModal />
       {createPost.map((post) => {
         console.log(post.content);

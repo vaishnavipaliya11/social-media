@@ -1,7 +1,5 @@
 @import "../../styles.css";
 
-
-
 .post-container {
   width: 500px;
   color: #1e293b;
@@ -43,7 +41,13 @@
   margin: 2px;
 }
 
-.icon :hover{
-cursor: pointer;
-color: var(--primary-color);
+.icon :hover {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

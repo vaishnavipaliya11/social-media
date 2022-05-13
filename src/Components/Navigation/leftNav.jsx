@@ -17,7 +17,7 @@ const LeftNav = () => {
     <PostModal onClose={onClose} isOpen={isOpen} />
       <div className="navbar-options">
         <AiOutlineHome className="navbar-icons" />
-        <h3>Home</h3>
+        <h3 onClick={()=> navigate("/")}>Home</h3>
       </div>
       <div className="navbar-options">
         <FaWpexplorer className="navbar-icons" />
