@@ -9,14 +9,13 @@ import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 
 const Post = ({ post }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { _id , content, username } = post;
-  const{postDispatch}= usePost();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { _id, content, username } = post;
+  const { postDispatch } = usePost();
   return (
     <div className="post-container">
-    <EdiPostModal onClose={onClose} isOpen={isOpen} />
+      <EdiPostModal onClose={onClose} isOpen={isOpen} />
       <div className="menu-container">
-     
         <span className="dis-row">
           <img
             className="avatar-img"
@@ -30,11 +29,14 @@ const Post = ({ post }) => {
           <Menu>
             <MenuButton as={Button}>:</MenuButton>
             <MenuList>
-              <MenuItem 
-              onClick={() => {
-                onOpen()
-                postDispatch({ type: "USER_ID", payload: _id });
-              }}>Edit</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  onOpen();
+                  postDispatch({ type: "USER_ID", payload: _id });
+                }}
+              >
+                Edit
+              </MenuItem>
               <MenuItem>{_id}</MenuItem>
             </MenuList>
           </Menu>{" "}
