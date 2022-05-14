@@ -21,32 +21,7 @@ export const posts = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
-  {
-    _id: uuid(),
-    content:
-      "Algorithm: Word used by programmers when they don’t want to explain what they did.",
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "Albert",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "Testing leads to failure, and failure leads to understanding.",
-    likes: {
-      likeCount: 0,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "Ram",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
+
   {
     _id: uuid(),
     content:
