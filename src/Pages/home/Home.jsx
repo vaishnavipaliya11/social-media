@@ -1,5 +1,5 @@
 import React from "react";
-import "./home.css"
+import "./home.css";
 import { PostModal } from "../../Components/modal/postModal";
 import { usePost } from "../../context/postContext";
 import { Post } from "../../Components/Post/Post";
