@@ -6,6 +6,8 @@ switch (action.type) {
          return{...state,id:action.payload} 
     case "EDIT_POST":
         return{...state,createPost:action.payload}
+        case "DELETE_POST":
+            return {...state,createPost:action.payload}
     default:
         return state;
 }

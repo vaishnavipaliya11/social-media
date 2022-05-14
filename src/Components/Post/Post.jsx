@@ -7,11 +7,13 @@ import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
+import { deletePost } from "../../utilities/deletePost";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { _id, content, username } = post;
   const { postDispatch } = usePost();
+
   return (
     <div className="post-container">
       <EdiPostModal onClose={onClose} isOpen={isOpen} />
@@ -37,7 +39,11 @@ const Post = ({ post }) => {
               >
                 Edit
               </MenuItem>
-              <MenuItem>Delete</MenuItem>
+              <MenuItem
+              onClick={() => {
+                
+                deletePost(_id,postDispatch)
+              }}>Delete</MenuItem>
             </MenuList>
           </Menu>{" "}
         </span>
