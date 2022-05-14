@@ -11,13 +11,52 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et.",
+      "Programming isn't about what you know; it's about what you can figure out.",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
+    username: "Roman",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Algorithm: Word used by programmers when they don’t want to explain what they did.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Albert",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "Testing leads to failure, and failure leads to understanding.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Ram",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "When I wrote this code, only God and I understood what I did. Now only God knows.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Christina",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

@@ -8,6 +8,7 @@ import { getPostFromDb } from "../../utilities/getPost";
 export const Home = () => {
   const { postState, postDispatch } = usePost();
   const { createPost } = postState;
+  
   useEffect(() => {
     getPostFromDb(postDispatch);
   }, []);
