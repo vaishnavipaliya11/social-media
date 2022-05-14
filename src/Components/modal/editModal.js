@@ -8,16 +8,19 @@ import {
   ModalBody,
   ModalCloseButton,Button,Input
 } from "@chakra-ui/react";
+import { editUserPost } from "../../utilities/editUserPost";
+import { usePost } from "../../context/postContext";
 
 export const EdiPostModal = ({ isOpen, onClose }) => {
     const [editPost,setEditPost]= useState("")
+    const{postState,postDispatch}= usePost()
+const {id}= postState
+    console.log(id);
+    console.log(editPost);
 
-    const editPostHandler = ()=>{
-        console.log(editPost);
-    }
+   
   return (
     <div>
-      editModal
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -29,7 +32,12 @@ export const EdiPostModal = ({ isOpen, onClose }) => {
 
           <ModalFooter>
            
-            <Button className="tweet-btn" onClick={editPostHandler}
+            <Button className="tweet-btn"
+             onClick={()=>{
+              onClose()
+              editUserPost(id,editPost,postDispatch)
+             }
+           }
             variant="ghost">Save</Button>
           </ModalFooter>
         </ModalContent>

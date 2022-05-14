@@ -4,7 +4,7 @@ const PostContext = createContext()
 
 const PostProvider = ({children})=>{
     const [postState, postDispatch]= useReducer(postReduc,{
-        createPost:[]
+        createPost:[],id:""
     })
     return(
         <PostContext.Provider value={{postState, postDispatch}}>
