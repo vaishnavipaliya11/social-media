@@ -8,6 +8,8 @@ switch (action.type) {
         return{...state,createPost:action.payload}
         case "DELETE_POST":
             return {...state,createPost:action.payload}
+            case "GET_USER_POST":
+                return{...state, createPost:action.payload}
     default:
         return state;
 }
