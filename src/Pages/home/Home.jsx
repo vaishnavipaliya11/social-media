@@ -11,7 +11,6 @@ export const Home = () => {
       <p>home page</p>
       <PostModal />
       {createPost.map((post) => {
-        console.log(post.content);
         return <Post post={post}/>;
       })}
     </div>

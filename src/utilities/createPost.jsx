@@ -12,7 +12,6 @@ export const createPost = async (post,postDispatch) => {
       },
       
     });
-    console.log(data.posts);
     postDispatch({type:"CREATE_POST",payload:data.posts})
    
   } catch (error) {

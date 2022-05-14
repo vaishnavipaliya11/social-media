@@ -27,7 +27,7 @@ const Post = ({ post }) => {
 
         <span>
           <Menu>
-            <MenuButton as={Button}>:</MenuButton>
+            <MenuButton className = "edit-btn"as={Button}>:</MenuButton>
             <MenuList>
               <MenuItem
                 onClick={() => {
@@ -37,7 +37,7 @@ const Post = ({ post }) => {
               >
                 Edit
               </MenuItem>
-              <MenuItem>{_id}</MenuItem>
+              <MenuItem>Delete</MenuItem>
             </MenuList>
           </Menu>{" "}
         </span>
