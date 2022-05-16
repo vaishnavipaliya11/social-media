@@ -6,13 +6,18 @@ import { BsBookmark } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import "./leftNav.css";
 import { useNavigate } from "react-router-dom";
+import { PostModal } from "../modal/postModal";
+import { useDisclosure } from "@chakra-ui/react";
 const LeftNav = () => {
   const navigate = useNavigate()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
+   
     <div className="navbar-container">
+    <PostModal onClose={onClose} isOpen={isOpen} />
       <div className="navbar-options">
         <AiOutlineHome className="navbar-icons" />
-        <h3>Home</h3>
+        <h3 onClick={()=> navigate("/")}>Home</h3>
       </div>
       <div className="navbar-options">
         <FaWpexplorer className="navbar-icons" />
@@ -34,7 +39,8 @@ const LeftNav = () => {
         <CgProfile className="navbar-icons" />
           <h3 onClick={()=> navigate("/profile")}>Profile</h3>
       </div> 
-      <button className="create-post-btn">Create New Post</button>
+      <button className="create-post-btn"
+      onClick={onOpen} >Create New Post</button>
     </div>
   );
 };

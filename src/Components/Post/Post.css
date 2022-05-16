@@ -1,7 +1,5 @@
 @import "../../styles.css";
 
-
-
 .post-container {
   width: 500px;
   color: #1e293b;
@@ -9,9 +7,7 @@
   padding: 0.5rem;
   border: 2px solid black;
 }
-.post-text {
-  text-align: left;
-}
+
 .user-id {
   color: var(--primary-color);
   margin: 5px;
@@ -45,7 +41,22 @@
   margin: 2px;
 }
 
-.icon :hover{
-cursor: pointer;
-color: var(--primary-color);
+.icon :hover {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-btn{
+  background: none;
+  font-size: 1.5rem;
+}
+
+.post-text{
+  margin-bottom: 1.5rem;
 }

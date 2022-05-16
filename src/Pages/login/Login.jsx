@@ -25,7 +25,7 @@ const Login = () => {
       })
       localStorage.setItem("token", response.data.encodedToken);
       setAuth(true);
-      navigate("/liked");
+      navigate("/");
     }catch(error){
       console.error()
     }
@@ -40,7 +40,7 @@ const Login = () => {
       });
       localStorage.setItem("token", data.encodedToken);
       setAuth(true);
-      navigate("/liked");
+      navigate("/");
     } catch (error) {
       alert(error);
     }

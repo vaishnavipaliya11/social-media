@@ -11,6 +11,8 @@ import { Login } from "./Pages/login/Login";
 import {Signup} from "./Pages/signup/SignUp"
 import { TopNav } from "./Components/Navigation/topNav";
 import { Explore } from "./Pages/explore/explore";
+import { Home } from "./Pages/home/Home";
+import { PostModal } from "./Components/modal/postModal";
 
 function App() {
   return (
@@ -27,7 +29,7 @@ function App() {
           <Route path="/bookmark" element={<Bookmark />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign" element={<Signup />} />
-          
+          <Route path="/"element={<Home/>}/>
         </Routes>
         <Sidecard />
       </div>

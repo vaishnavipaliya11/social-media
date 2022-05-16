@@ -80,6 +80,7 @@ export const createPostHandler = function (schema, request) {
     const { postData } = JSON.parse(request.requestBody);
     const post = {
       _id: uuid(),
+      content:postData,
       ...postData,
       likes: {
         likeCount: 0,
@@ -134,7 +135,7 @@ export const editPostHandler = function (schema, request) {
         }
       );
     }
-    post = { ...post, ...postData };
+    post = { ...post,content:postData };
     this.db.posts.update({ _id: postId }, post);
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
