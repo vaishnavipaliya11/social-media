@@ -8,6 +8,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 import { deletePost } from "../../utilities/deletePost";
+import { likePost } from "../../utilities/likePost";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,8 +52,10 @@ const Post = ({ post }) => {
 
       <section className="post-text"> {content}</section>
       <span className="post-bottom-icons">
-        <p className="icon">
-          <AiOutlineHeart />
+        <p className="icon" onClick={()=>{
+          likePost(_id)
+        }}>
+          <AiOutlineHeart  />
         </p>
         <p className="icon">
           <BiComment />
