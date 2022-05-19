@@ -9,6 +9,7 @@ import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 import { deletePost } from "../../utilities/deletePost";
 
+
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { _id, content, username } = post;
@@ -52,7 +53,7 @@ const Post = ({ post }) => {
       <section className="post-text"> {content}</section>
       <span className="post-bottom-icons">
         <p className="icon">
-          <AiOutlineHeart />
+          <AiOutlineHeart  />
         </p>
         <p className="icon">
           <BiComment />

@@ -3,9 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { useState } from "react";
 import axios from "axios";
+import { userSignUp } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const { auth, setAuth } = useAuth();
   const [erorMsg, setErrorMsg] = useState(false);
   const [userData, setUserData] = useState({
@@ -22,19 +25,10 @@ export const Signup = () => {
   };
 
   const signUpHandler = async (e) => {
-   e.preventDefault()
+   
    try{
-     const response = await axios.post("api/auth/signup",{
-       firstName:userData.firstName,
-       lastName:userData.lastName,
-       username:userData.username,
-       password:userData.password
-     })
-     localStorage.setItem("token", response.data.encodedToken);
-
-      setAuth(true);
-      navigate("/login");
-     console.log(response);
+    e.preventDefault()
+     const result = await dispatch(userSignUp(userData))
    }catch(err){
      console.log(err);
    }
