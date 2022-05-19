@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./login.css";
 import { useAuth } from "../../context/authContext";
+import { userLogin } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ username: "", password: "" });
 
@@ -11,46 +13,49 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const onChangehandler = (e) => {
     const { name, value } = e.target;
     setUserDetails({ ...userDetails, [name]: value });
+    
   };
-
-  const loginHanddler = async (e) => {
-    e.preventDefault()
-    try{
-      const response = await axios.post("api/auth/login",{
-        username:userDetails.username,
-        password:userDetails.password
-      })
-      localStorage.setItem("token", response.data.encodedToken);
-      setAuth(true);
-      navigate("/");
-    }catch(error){
-      console.error()
-    }
-  };
-
+ 
   const testHandler = async (e) => {
-    e.preventDefault()
     try {
-      const { data } = await axios.post("api/auth/login", {
-        username: "adarshbalika",
-        password: "adarshBalika123",
-      });
-      localStorage.setItem("token", data.encodedToken);
-      setAuth(true);
-      navigate("/");
+      e.preventDefault();
+      const res = await dispatch(
+        userLogin({ username: 'adarshbalika', password: 'adarshBalika123' })
+      );
+      navigate("/")
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
+    e.preventDefault();
+   
+      e.preventDefault();
+      
+    
   };
 
+  const handelLogin = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(userDetails);
+      console.log(userDetails.username, userDetails.password);
+      const res = await dispatch(
+        userLogin(userDetails)
+      );
+      navigate("/")
+    } catch (error) {
+      console.log(error);
+    }
+    
+  };
   return (
     <div className="form-container">
-
       <div className="validation">
-      <h2>Login</h2>
+        <h2>Login</h2>
         <form action="">
           <div className="input-wrapper">
             <input
@@ -61,12 +66,10 @@ const Login = () => {
               onChange={(e) => onChangehandler(e)}
             />
           </div>
-
           <div className="input-wrapper">
             <input
               className="form-input"
               name="password"
-              type="text"
               class="form-input"
               placeholder="Enter your password"
               onChange={(e) => onChangehandler(e)}
@@ -77,10 +80,7 @@ const Login = () => {
             <button className="remove-card-btn" onClick={(e) => testHandler(e)}>
               Guest Login
             </button>
-            <button
-              className="remove-card-btn"
-              onClick={(e) => loginHanddler(e)}
-            >
+            <button className="remove-card-btn" onClick={(e) => handelLogin(e)}>
               Login
             </button>
           </div>

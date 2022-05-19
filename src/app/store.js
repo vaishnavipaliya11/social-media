@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import likeReducer from "../features/like/likeslice"
+import authReducer from "../features/auth/authSlice"
 export const store = configureStore({
-reducer :{timeline:likeReducer}
+reducer :{timeline:authReducer}
 })
