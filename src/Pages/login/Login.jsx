@@ -41,8 +41,6 @@ const Login = () => {
   const handelLogin = async (e) => {
     try {
       e.preventDefault();
-      console.log(userDetails);
-      console.log(userDetails.username, userDetails.password);
       const res = await dispatch(
         userLogin(userDetails)
       );

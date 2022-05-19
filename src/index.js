@@ -11,7 +11,6 @@ import { store } from "./app/store";
 import { Provider } from 'react-redux'
 // Call make Server
 makeServer();
-console.log(store.getState());
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
