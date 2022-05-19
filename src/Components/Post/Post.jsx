@@ -8,12 +8,13 @@ import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 import { deletePost } from "../../utilities/deletePost";
-
+import {useDispatch} from "react-redux"
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { _id, content, username } = post;
   const { postDispatch } = usePost();
+
 
   return (
     <div className="post-container">
