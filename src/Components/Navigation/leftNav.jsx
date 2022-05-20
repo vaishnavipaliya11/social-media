@@ -42,7 +42,7 @@ const LeftNav = () => {
           <h3 onClick={()=> navigate("/profile")}>Profile</h3>
       </div> 
       <button className="create-post-btn"
-      onClick={onOpen} >Create New Post</button>
+      onClick={onOpen}> Create New Post</button>
     </div>
   );
 };

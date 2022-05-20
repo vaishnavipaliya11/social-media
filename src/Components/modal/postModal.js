@@ -24,16 +24,12 @@ export const PostModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.timeline);
-  console.log(user);
-const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   const tweetHandler = () => {
-    dispatch(createPosts(userTweet))
-    
+    dispatch(createPosts(userTweet));
     onClose();
   };
-
- 
 
   return (
     <>
@@ -54,7 +50,7 @@ const token = localStorage.getItem("token")
               <Button
                 className="tweet-btn"
                 variant="ghost"
-                onClick={()=>tweetHandler()}
+                onClick={() => tweetHandler()}
               >
                 Tweet
               </Button>
@@ -62,7 +58,7 @@ const token = localStorage.getItem("token")
               <Button
                 className="tweet-btn"
                 variant="ghost"
-                onClick={()=>tweetHandler()}
+                onClick={() => tweetHandler()}
                 disabled
               >
                 {" "}

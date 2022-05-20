@@ -9,12 +9,11 @@ import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 import { deletePost } from "../../utilities/deletePost";
 import {useDispatch} from "react-redux"
+import { getUserId } from "../../features/postSlice";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { _id, content, username } = post;
-  const { postDispatch } = usePost();
-
+const dispatch= useDispatch()
 
   return (
     <div className="post-container">
@@ -25,8 +24,8 @@ const Post = ({ post }) => {
             className="avatar-img"
             src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
           />
-          <h3 className="user-name">{username}</h3>
-          <p className="user-id">@{username}</p>
+          <h3 className="user-name">{post.username}</h3>
+          <p className="user-id">@{post.username}</p>
         </span>
 
         <span>
@@ -36,7 +35,7 @@ const Post = ({ post }) => {
               <MenuItem
                 onClick={() => {
                   onOpen();
-                  postDispatch({ type: "USER_ID", payload: _id });
+                  dispatch(getUserId(post._id))
                 }}
               >
                 Edit
@@ -51,7 +50,7 @@ const Post = ({ post }) => {
         </span>
       </div>
 
-      <section className="post-text"> {content}</section>
+      <section className="post-text"> {post.content}</section>
       <span className="post-bottom-icons">
         <p className="icon">
           <AiOutlineHeart  />
