@@ -10,11 +10,11 @@ const initialState = {
 
 export const getPost = createAsyncThunk("post/getpost", async () => {
   try {
-    const { response } = await axios({
+    const { data } = await axios({
       method: "GET",
       url: "/api/posts",
     });
-    console.log(response);
+    return data.posts;
   } catch (error) {
     console.log(error);
   }
@@ -58,26 +58,21 @@ export const editPosts = createAsyncThunk(
   }
 );
 
-export const deletePosts = createAsyncThunk(
-  "post/delete",
-  async(id) =>{
-    const token = localStorage.getItem("token");
-    try {
-      const {data}= await axios({
-          method:"DELETE",
-          url:`/api/posts/${id}`,
-          headers:{
-              authorization:token
-          }
-      })
-      console.log(data);
-      return data
-       
+export const deletePosts = createAsyncThunk("post/delete", async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    const { data } = await axios({
+      method: "DELETE",
+      url: `/api/posts/${id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+    return data;
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
-  }
-)
+});
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -87,10 +82,19 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: {
-    [getPost.fulfilled]: (state, { payload }) => {
+    [getPost.pending]: (state) => {
       state.status = "loading";
       state.error = null;
-      state.post = payload.data.post;
+    },
+    [getPost.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      state.status = "succed";
+      state.error = null;
+      state.post = payload;
+    },
+    [getPost.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
     },
     [createPosts.pending]: (state) => {
       state.status = "loading";
@@ -100,7 +104,7 @@ export const postSlice = createSlice({
       state.post = payload.data.posts;
       state.status = "succed";
     },
-    [createPosts.rejected]: (state, action) => {
+    [createPosts.rejected]: (state) => {
       state.error = true;
       state.status = "rejected";
     },
@@ -127,7 +131,7 @@ export const postSlice = createSlice({
     [deletePosts.rejected]: (state) => {
       state.error = true;
       state.status = "rejected";
-    }
+    },
   },
 });
 export const { getUserId } = postSlice.actions;

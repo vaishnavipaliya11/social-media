@@ -15,8 +15,9 @@ export const Home = () => {
   const { post } = useSelector((store) => store.post);
 
   useEffect(() => {
-    dispatch(getPost);
+    dispatch(getPost());
   }, []);
+  
   return (
     <div className="post-display-container">
       <PostModal />
