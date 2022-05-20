@@ -87,7 +87,6 @@ export const postSlice = createSlice({
       state.error = null;
     },
     [getPost.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.status = "succed";
       state.error = null;
       state.post = payload;
