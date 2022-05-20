@@ -9,7 +9,7 @@ import { EdiPostModal } from "../modal/editModal";
 import { usePost } from "../../context/postContext";
 import { deletePost } from "../../utilities/deletePost";
 import {useDispatch} from "react-redux"
-import { getUserId } from "../../features/postSlice";
+import { deletePosts, getUserId } from "../../features/postSlice";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,8 +42,7 @@ const dispatch= useDispatch()
               </MenuItem>
               <MenuItem
               onClick={() => {
-                
-                deletePost(_id,postDispatch)
+                dispatch(deletePosts(post._id))
               }}>Delete</MenuItem>
             </MenuList>
           </Menu>{" "}

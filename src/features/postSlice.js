@@ -57,6 +57,27 @@ export const editPosts = createAsyncThunk(
     }
   }
 );
+
+export const deletePosts = createAsyncThunk(
+  "post/delete",
+  async(id) =>{
+    const token = localStorage.getItem("token");
+    try {
+      const {data}= await axios({
+          method:"DELETE",
+          url:`/api/posts/${id}`,
+          headers:{
+              authorization:token
+          }
+      })
+      console.log(data);
+      return data
+       
+  } catch (error) {
+      console.log(error);
+  }
+  }
+)
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -91,10 +112,22 @@ export const postSlice = createSlice({
       state.post = payload.posts;
       state.status = "succed";
     },
-    [editPosts.rejected]: (state, action) => {
+    [editPosts.rejected]: (state) => {
       state.error = true;
       state.status = "rejected";
     },
+    [deletePosts.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [deletePosts.fulfilled]: (state, { payload }) => {
+      state.post = payload.posts;
+      state.status = "succed";
+    },
+    [deletePosts.rejected]: (state) => {
+      state.error = true;
+      state.status = "rejected";
+    }
   },
 });
 export const { getUserId } = postSlice.actions;
