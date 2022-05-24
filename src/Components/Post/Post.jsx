@@ -6,15 +6,17 @@ import { BiComment } from "react-icons/bi";
 import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
-import { usePost } from "../../context/postContext";
-import { deletePost } from "../../utilities/deletePost";
 import {useDispatch} from "react-redux"
 import { deletePosts, getUserId } from "../../features/postSlice";
+import { addToBookmark } from "../../features/bookmarkSlice";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 const dispatch= useDispatch()
 
+const bookMarkHandler = ()=>{
+  dispatch(addToBookmark(post._id))
+}
   return (
     <div className="post-container">
       <EdiPostModal onClose={onClose} isOpen={isOpen} />
@@ -57,7 +59,7 @@ const dispatch= useDispatch()
         <p className="icon">
           <BiComment />
         </p>
-        <p className="icon">
+        <p className="icon" onClick={()=>bookMarkHandler()}>
           <BsBookmark />
         </p>
       </span>
