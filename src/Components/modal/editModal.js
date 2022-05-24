@@ -10,14 +10,19 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
-import { editUserPost } from "../../utilities/editUserPost";
-import { usePost } from "../../context/postContext";
+import { useDispatch, useSelector } from "react-redux";
+import { editPosts } from "../../features/postSlice";
 
 export const EdiPostModal = ({ isOpen, onClose }) => {
-  const [editPost, setEditPost] = useState("");
-  const { postState, postDispatch } = usePost();
-  const { id } = postState;
+  const [edittedPost, setEdittedPost] = useState("");
 
+  const dispatch = useDispatch();
+  const { id } = useSelector((store) => store.post);
+
+  const editHandler = () => {
+    dispatch(editPosts({ edittedPost, id }));
+    onClose();
+  };
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -26,16 +31,13 @@ export const EdiPostModal = ({ isOpen, onClose }) => {
           <ModalHeader>Edit Tweet</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input onChange={(e) => setEditPost(e.target.value)} />
+            <Input onChange={(e) => setEdittedPost(e.target.value)} />
           </ModalBody>
 
           <ModalFooter>
             <Button
               className="tweet-btn"
-              onClick={() => {
-                onClose();
-                editUserPost(id, editPost, postDispatch);
-              }}
+              onClick={() => editHandler()}
               variant="ghost"
             >
               Save

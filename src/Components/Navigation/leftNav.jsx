@@ -8,9 +8,11 @@ import "./leftNav.css";
 import { useNavigate } from "react-router-dom";
 import { PostModal } from "../modal/postModal";
 import { useDisclosure } from "@chakra-ui/react";
+
 const LeftNav = () => {
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
    
     <div className="navbar-container">
@@ -40,7 +42,7 @@ const LeftNav = () => {
           <h3 onClick={()=> navigate("/profile")}>Profile</h3>
       </div> 
       <button className="create-post-btn"
-      onClick={onOpen} >Create New Post</button>
+      onClick={onOpen}> Create New Post</button>
     </div>
   );
 };

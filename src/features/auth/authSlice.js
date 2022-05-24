@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   user: {},
-  token: {},
+  token: undefined,
   status: "idle",
   error: true,
 };
@@ -11,6 +11,7 @@ const initialState = {
 const saveUserDataInLocalStorage = (userData) => {
   console.log(userData);
   localStorage.setItem("userData", JSON.stringify(userData));
+  localStorage.setItem("token", JSON.stringify(token));
 };
 
 export const removeUserData = () =>{
@@ -27,15 +28,8 @@ export const userLogin = createAsyncThunk(
         url: "api/auth/login",
         data: { username, password },
       });
-      console.log("try",response);
-      const userData = {
-        token: response.data.encodedToken,
-        user: response.data.foundUser,
-      };
 
-      console.log("from try",userData);
-      saveUserDataInLocalStorage(userData);
-      return userData;
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -77,9 +71,11 @@ const authSlice = createSlice({
       state.status = "loading";
       state.error = null;
     },
-    [userLogin.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [userLogin.fulfilled]: (state, {payload}) => {
+      state.user = payload.data.foundUser;
+      state.token = payload.data.encodedToken;
+      localStorage.setItem("token", JSON.stringify(payload.data.encodedToken));
+      localStorage.setItem("user", JSON.stringify(payload.data.foundUser));
       state.status = "succed";
     },
     [userLogin.rejected]: (state, action) => {

@@ -5,18 +5,23 @@ import { usePost } from "../../context/postContext";
 import { Post } from "../../Components/Post/Post";
 import { useEffect } from "react";
 import { getPostFromDb } from "../../utilities/getPost";
-
+import { useSelector } from "react-redux";
+import { getPost } from "../../features/postSlice";
+import { useDispatch } from "react-redux";
 export const Home = () => {
   const { postState, postDispatch } = usePost();
   const { createPost } = postState;
+  const dispatch= useDispatch()
+  const { post } = useSelector((store) => store.post);
 
   useEffect(() => {
-    getPostFromDb(postDispatch);
+    dispatch(getPost());
   }, []);
+  
   return (
     <div className="post-display-container">
       <PostModal />
-      {createPost.map((post) => {
+      {post.map((post) => {
         return <Post post={post} />;
       })}
     </div>
