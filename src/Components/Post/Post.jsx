@@ -1,6 +1,6 @@
 import React from "react";
 import "./Post.css";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineLike } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
 import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
@@ -25,6 +25,8 @@ const Post = ({ post }) => {
       navigate("/login");
     }
   };
+
+  const likeHandler =()=>{}
   return (
     <div className="post-container">
       <EdiPostModal onClose={onClose} isOpen={isOpen} />
@@ -66,9 +68,12 @@ const Post = ({ post }) => {
 
       <section className="post-text"> {post.content}</section>
       <span className="post-bottom-icons">
+
         <p className="icon">
-          <AiOutlineHeart />
+          <AiOutlineLike  onClick={()=> likeHandler}/>
+          <span>{post.likeCount}</span>
         </p>
+        
         <p className="icon">
           <BiComment />
         </p>
