@@ -7,9 +7,24 @@ const initialState = {
   id:""
 };
 
+export const getBookMarks = createAsyncThunk(
+  "bookmark/get",
+  async()=>{
+    const token = localStorage.getItem("token");
+    try {
+      const {data}= await axios.get(
+        "/api/users/bookmark/",
+        {
+          headers:{authorization:token}
+        }
+      )
+    } catch (error) {
+      
+    }
+  }
+)
 export const addToBookmark = createAsyncThunk(
   "bookmark/add",
-
   async (postId) => {
     const token = localStorage.getItem("token");
     try {
