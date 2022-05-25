@@ -7,7 +7,7 @@ const initialState = {
   id:""
 };
 
-export const getBookMarks = createAsyncThunk(
+export const getAllBookMarks = createAsyncThunk(
   "bookmark/get",
   async()=>{
     const token = localStorage.getItem("token");
