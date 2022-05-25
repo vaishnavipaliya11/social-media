@@ -4,7 +4,6 @@ import { Box } from "@chakra-ui/react";
 import { Post } from "../../Components/Post/Post";
 export const Bookmark = () => {
   const { bookmark } = useSelector((store) => store.bookmark);
-  console.log(bookmark);
   return (
     <div>
       <h2>Bookmark page</h2>

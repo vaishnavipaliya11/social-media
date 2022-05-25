@@ -11,7 +11,6 @@ export const addToBookmark = createAsyncThunk(
   "bookmark/add",
 
   async (postId) => {
-    console.log("called", postId);
     const token = localStorage.getItem("token");
     try {
       const { data } = await axios.post(
@@ -21,7 +20,7 @@ export const addToBookmark = createAsyncThunk(
           headers: { authorization: token },
         }
       );
-      console.log(data);
+     
       return data.bookmarks;
     } catch (error) {
       console.log(error.data);

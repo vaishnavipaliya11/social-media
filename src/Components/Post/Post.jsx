@@ -14,13 +14,16 @@ const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const { bookmark } = useSelector((store) => store.bookmark);
-  console.log(bookmark);
   const { token } = useSelector((store) => store.timeline);
   const navigate = useNavigate();
   const bookMarkHandler = () => {
-  
-    bookmark.find((item)=> item._id === post._id)
-    ? dispatch(removeBookmark(post._id)) : dispatch(addToBookmark (post._id))
+    if (bookmark.find((item) => item._id === post._id)) {
+      dispatch(removeBookmark(post._id));
+    } else if (token) {
+      dispatch(addToBookmark(post._id));
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div className="post-container">
@@ -77,8 +80,7 @@ const Post = ({ post }) => {
               bookMarkHandler();
             }}
           >
-          <BsFillBookmarkFill />
-            
+            <BsFillBookmarkFill />
           </p>
         ) : (
           <p
@@ -87,7 +89,7 @@ const Post = ({ post }) => {
               bookMarkHandler();
             }}
           >
-          <BsBookmark />
+            <BsBookmark />
           </p>
         )}
       </span>
