@@ -73,6 +73,48 @@ export const deletePosts = createAsyncThunk("post/delete", async (id) => {
     console.log(error);
   }
 });
+
+export const addToLike = createAsyncThunk(
+  "like/add",
+  async (postId) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.post(
+        `/api/posts/like/${postId}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+     
+      return data.posts
+    } catch (error) {
+      console.log(error.data);
+    }
+  }
+)
+
+export const removeLike = createAsyncThunk(
+  "like/remove",
+  async (postId) => {
+    const token = localStorage.getItem("token");
+    try {
+      const { data } = await axios.post(
+        `/api/posts/dislike/${postId}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+     
+      return data.posts
+    } catch (error) {
+      console.log(error.data);
+    }
+  }
+)
+
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -130,6 +172,32 @@ export const postSlice = createSlice({
     [deletePosts.rejected]: (state) => {
       state.error = true;
       state.status = "rejected";
+    },
+    [addToLike.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [addToLike.fulfilled]: (state, { payload }) => {
+      state.status = "succed";
+      state.error = null;
+      state.post = payload;
+    },
+    [addToLike.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+    [removeLike.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [removeLike.fulfilled]: (state, { payload }) => {
+      state.status = "succed";
+      state.error = null;
+      state.post = payload;
+    },
+    [removeLike.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
     },
   },
 });
