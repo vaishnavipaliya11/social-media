@@ -7,6 +7,5 @@ export const store = configureStore({
     timeline: authReducer,
     post: postReducer,
     bookmark: bookmarkReducer,
-   
   },
 });
