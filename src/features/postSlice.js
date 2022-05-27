@@ -74,46 +74,39 @@ export const deletePosts = createAsyncThunk("post/delete", async (id) => {
   }
 });
 
-export const addToLike = createAsyncThunk(
-  "like/add",
-  async (postId) => {
-    const token = localStorage.getItem("token");
-    try {
-      const { data } = await axios.post(
-        `/api/posts/like/${postId}`,
-        {},
-        {
-          headers: { authorization: token },
-        }
-      );
-     
-      return data.posts
-    } catch (error) {
-      console.log(error.data);
-    }
-  }
-)
+export const addToLike = createAsyncThunk("like/add", async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const { data } = await axios.post(
+      `/api/posts/like/${postId}`,
+      {},
+      {
+        headers: { authorization: token },
+      }
+    );
 
-export const removeLike = createAsyncThunk(
-  "like/remove",
-  async (postId) => {
-    const token = localStorage.getItem("token");
-    try {
-      const { data } = await axios.post(
-        `/api/posts/dislike/${postId}`,
-        {},
-        {
-          headers: { authorization: token },
-        }
-      );
-     
-      return data.posts
-    } catch (error) {
-      console.log(error.data);
-    }
+    return data.posts;
+  } catch (error) {
+    console.log(error.data);
   }
-)
+});
 
+export const removeLike = createAsyncThunk("like/remove", async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const { data } = await axios.post(
+      `/api/posts/dislike/${postId}`,
+      {},
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    return data.posts;
+  } catch (error) {
+    console.log(error.data);
+  }
+});
 
 export const postSlice = createSlice({
   name: "post",

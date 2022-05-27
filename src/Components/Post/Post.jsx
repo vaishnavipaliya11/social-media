@@ -27,7 +27,7 @@ const Post = ({ post }) => {
     }
   };
 
-  const isBookMarked = bookmark.find((item) => item._id === post._id) 
+  const isBookMarked = bookmark.find((item) => item._id === post._id);
   return (
     <div className="post-container">
       <EdiPostModal onClose={onClose} isOpen={isOpen} />
@@ -93,7 +93,7 @@ const Post = ({ post }) => {
           <BiComment />
         </p>
 
-        {isBookMarked? (
+        {isBookMarked ? (
           <p
             className="icon"
             onClick={() => {
