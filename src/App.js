@@ -13,7 +13,7 @@ import { TopNav } from "./Components/Navigation/topNav";
 import { Explore } from "./Pages/explore/explore";
 import { Home } from "./Pages/home/Home";
 import { PostModal } from "./Components/modal/postModal";
-
+import Mockman from "mockman-js";
 function App() {
   return (
     <div className="App">
@@ -30,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/sign" element={<Signup />} />
           <Route path="/"element={<Home/>}/>
+          <Route path="/testApi" element={<Mockman />} />
         </Routes>
         <Sidecard />
       </div>

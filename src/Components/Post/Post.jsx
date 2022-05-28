@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Post.css";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
@@ -7,16 +7,24 @@ import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePosts, getUserId } from "../../features/postSlice";
+import {
+  deletePosts,
+  getUserId,
+  getSelectedPost,
+} from "../../features/postSlice";
 import { addToBookmark, removeBookmark } from "../../features/bookmarkSlice";
 import { useNavigate } from "react-router-dom";
 import { addToLike, removeLike } from "../../features/postSlice";
+import { CommentModal } from "../modal/commentModal";
+
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const { bookmark } = useSelector((store) => store.bookmark);
   const { token } = useSelector((store) => store.timeline);
   const navigate = useNavigate();
+  const [editModal,setEditModal]= useState(false)
+  const [commentModal, setCommentModal]= useState(false)
   const bookMarkHandler = () => {
     if (bookmark.find((item) => item._id === post._id)) {
       dispatch(removeBookmark(post._id));
@@ -30,7 +38,6 @@ const Post = ({ post }) => {
   const isBookMarked = bookmark.find((item) => item._id === post._id);
   return (
     <div className="post-container">
-      <EdiPostModal onClose={onClose} isOpen={isOpen} />
       <div className="menu-container">
         <span className="dis-row">
           <img
@@ -46,15 +53,19 @@ const Post = ({ post }) => {
             <MenuButton className="edit-btn" as={Button}>
               :
             </MenuButton>
+
             <MenuList>
               <MenuItem
                 onClick={() => {
                   onOpen();
                   dispatch(getUserId(post._id));
+                  setEditModal(true)
                 }}
               >
+                
                 Edit
               </MenuItem>
+              {editModal && <EdiPostModal onClose={onClose} isOpen={isOpen} />}
               <MenuItem
                 onClick={() => {
                   dispatch(deletePosts(post._id));
@@ -89,9 +100,17 @@ const Post = ({ post }) => {
           </p>
         )}
 
-        <p className="icon">
+        <Button
+          className="icon"
+          onClick={() => {
+            onOpen();
+            dispatch(getSelectedPost(post));
+            setCommentModal(true)
+          }}
+        >
+          {commentModal && <CommentModal onClose={onClose} isOpen={isOpen} />}
           <BiComment />
-        </p>
+        </Button>
 
         {isBookMarked ? (
           <p
