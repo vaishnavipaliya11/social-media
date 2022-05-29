@@ -18,13 +18,13 @@ export const posts = [
     },
     username: "adarshbalika",
     userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
-    createdAt: '2022/01/01',
+    createdAt: "2022/01/01",
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "",
+
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -33,7 +33,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "",
+
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -43,8 +43,7 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content:
-      "React makes front-end easy.",
+    content: "React makes front-end easy.",
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -56,7 +55,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "",
+
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -65,7 +64,6 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -90,7 +88,6 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -99,7 +96,6 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

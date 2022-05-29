@@ -8,7 +8,7 @@ const initialState = {
   error: false,
   id: "",
   singlePost:{},
-  usercomment:[]
+  commentId:""
 };
 
 
@@ -122,7 +122,12 @@ export const postSlice = createSlice({
     },
     getSelectedPost:(state,action)=>{
       state.singlePost= action.payload
-    }
+    },
+    
+      getCommentId:(state,action)=>{
+        state.commentId= action.payload
+      }
+    
   },
   extraReducers: {
     [getPost.pending]: (state) => {
@@ -230,5 +235,5 @@ export const postSlice = createSlice({
     }
   },
 });
-export const { getUserId , getSelectedPost} = postSlice.actions;
+export const { getUserId , getSelectedPost,getCommentId} = postSlice.actions;
 export default postSlice.reducer;

@@ -12,12 +12,14 @@ import {
   deletePosts,
   getUserId,
   getSelectedPost,
+  getCommentId,
 } from "../../features/postSlice";
 import { addToBookmark, removeBookmark } from "../../features/bookmarkSlice";
 import { useNavigate } from "react-router-dom";
 import { addToLike, removeLike } from "../../features/postSlice";
 import { CommentModal } from "../modal/commentModal";
 import { getAllComments } from "../../features/commentApi";
+import { EditCommentModal } from "../modal/editCommentModal";
 
 const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,8 +28,9 @@ const Post = ({ post }) => {
   const { token } = useSelector((store) => store.timeline);
   const navigate = useNavigate();
   const [editModal, setEditModal] = useState(false);
+  const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
-  const [commentData, setCommentData] = useState([]);
+
   const bookMarkHandler = () => {
     if (bookmark.find((item) => item._id === post._id)) {
       dispatch(removeBookmark(post._id));
@@ -144,16 +147,27 @@ const Post = ({ post }) => {
         </span>
       </div>
 
-      {post?.comments.map(({ _id, text }) => {
+      {post?.comments.map((commentData) => {
         return (
-          <div key={_id}>
+          <div>
             <Box w="100%" p={2} color="black">
-              {text}
-
+              {commentData.text}
               <Menu>
                 <MenuButton as={Button}>:</MenuButton>
                 <MenuList>
-                  <MenuItem>Edit</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      onOpen();
+                      setEditCommentModal(true);
+                      dispatch(getUserId(post._id));
+                      dispatch(getCommentId(commentData._id));
+                    }}
+                  >
+                    Edit
+                  </MenuItem>
+                  {editCommentModal && (
+                    <EditCommentModal onClose={onClose} isOpen={isOpen} />
+                  )}
                   <MenuItem>Delete</MenuItem>
                 </MenuList>
               </Menu>
