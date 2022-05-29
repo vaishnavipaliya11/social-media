@@ -220,7 +220,6 @@ export const postSlice = createSlice({
       state.error = null;
     },
     [getAllComments.fulfilled]: (state, { payload }) => {
-      console.log(payload,"payload");
       state.status = "succed";
       state.error = null;
       state.usercomment = payload;

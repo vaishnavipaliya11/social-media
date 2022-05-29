@@ -7,6 +7,7 @@ import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { useDispatch, useSelector } from "react-redux";
+import { Box } from "@chakra-ui/react";
 import {
   deletePosts,
   getUserId,
@@ -142,12 +143,23 @@ const Post = ({ post }) => {
           )}
         </span>
       </div>
-      <div>
-        {" "}
-        
-      </div>
+
       {post?.comments.map(({ _id, text }) => {
-        return <p key={_id}> {text}</p>;
+        return (
+          <div key={_id}>
+            <Box w="100%" p={2} color="black">
+              {text}
+
+              <Menu>
+                <MenuButton as={Button}>:</MenuButton>
+                <MenuList>
+                  <MenuItem>Edit</MenuItem>
+                  <MenuItem>Delete</MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </div>
+        );
       })}
     </div>
   );

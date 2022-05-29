@@ -10,7 +10,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "hfhes repellat.",
+      "Programming isn't about what you know; it's about what you can figure out.",
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -24,7 +24,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -33,7 +33,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "Wow!",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -56,7 +56,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -65,7 +65,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "soham",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -78,7 +78,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "consequatur aut perferendis doloribus asperiores repellat.",
+      "The only way to learn a new programming language is by writing programs in it.",
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -90,7 +90,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "better",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -99,7 +99,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "good!",
+        text: "",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

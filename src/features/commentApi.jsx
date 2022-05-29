@@ -5,7 +5,6 @@ export const addComment = createAsyncThunk(
   "post/comment",
   async ({   commentData, _id }) => {
     const token = localStorage.getItem("token");
-    console.log("add comment id",_id);
     try {
       const { data } = await axios.post(
         `/api/comments/add/${_id}`,
@@ -18,7 +17,6 @@ export const addComment = createAsyncThunk(
           },
         }
       );
-      console.log(data,"add api");
       return data.comments
     } catch (error) {
       console.log(error);
@@ -29,7 +27,6 @@ export const addComment = createAsyncThunk(
 export const getAllComments = createAsyncThunk(
   "post/getcomment",
   async(_id)=>{
-    console.log("get id",_id);
     const token = localStorage.getItem("token");
     try {
       const {data}= await axios.get(
