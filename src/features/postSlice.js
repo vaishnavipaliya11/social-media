@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addComment } from "./commentApi";
+import { addComment, getAllComments } from "./commentApi";
 
 const initialState = {
   post: [],
   status: "idle",
   error: false,
   id: "",
-  singlePost:[],
-  comment:[]
+  singlePost:{},
+  usercomment:[]
 };
 
 
@@ -33,6 +33,7 @@ export const createPosts = createAsyncThunk("post/createPost", async (post) => {
       data: { postData: post },
       headers: { authorization: token },
     });
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error.response);
@@ -199,19 +200,35 @@ export const postSlice = createSlice({
       state.status = "rejected";
       state.error = true;
     },
-    // [addComment.pending]: (state) => {
-    //   state.status = "loading";
-    //   state.error = null;
-    // },
-    // [addComment.fulfilled]: (state, { payload }) => {
-    //   state.status = "succed";
-    //   state.error = null;
-    //   state.comment = payload;
-    // },
-    // [addComment.rejected]: (state) => {
-    //   state.status = "rejected";
-    //   state.error = true;
-    // },
+    [addComment.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [addComment.fulfilled]: (state, { payload }) => {
+      state.status = "succed";
+      state.error = null;
+      state.post= state.post.map((eachpost)=> eachpost._id === state.singlePost._id ? {
+        ...eachpost, comments : payload 
+      }: eachpost)
+    },
+    [addComment.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+    [getAllComments.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [getAllComments.fulfilled]: (state, { payload }) => {
+      console.log(payload,"payload");
+      state.status = "succed";
+      state.error = null;
+      state.usercomment = payload;
+    },
+    [getAllComments.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    }
   },
 });
 export const { getUserId , getSelectedPost} = postSlice.actions;

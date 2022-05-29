@@ -20,16 +20,12 @@ import { addComment } from "../../features/commentApi";
 export const CommentModal = ({ isOpen, onClose }) => {
   const { singlePost } = useSelector((store) => store.post);
 
-  const [userComment, setUserComment]= useState("")
+  const [commentData, setCommentData]= useState("")
   const {_id,content, username } = singlePost;
-
-  const { id } = useSelector((store) => store.post);
   const dispatch = useDispatch()
 
-
-
   const commentHandler = ()=>{
-    dispatch(addComment({userComment,_id}))
+    dispatch(addComment({commentData,_id}))
     onClose();
   }
 
@@ -52,7 +48,7 @@ export const CommentModal = ({ isOpen, onClose }) => {
             <hr />
             <Box>
               <Input placeholder="medium size" size="sm" 
-              onChange={(e)=>{setUserComment(e.target.value)}}/>
+              onChange={(e)=>{setCommentData(e.target.value)}}/>
             </Box>
           </ModalBody>
 

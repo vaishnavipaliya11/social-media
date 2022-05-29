@@ -17,6 +17,7 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getPost());
   }, []);
+
   
   return (
     <div className="post-display-container">
