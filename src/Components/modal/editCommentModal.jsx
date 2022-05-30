@@ -11,19 +11,20 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
+import { editUserComment } from "../../features/commentApi";
 
 export const EditCommentModal = ({ isOpen, onClose }) => {
-    const [editComment, setEditComment ]= useState("")
+  const [commentData, setCommentData] = useState("");
+  const dispatch = useDispatch();
+  const { id, commentId } = useSelector((store) => store.post);
+  const [editModal,setEditModal]= useState(false)
 
-    const {id,post, commentId}= useSelector(store => store.post)
-    console.log(id);
+  const editCommentHandler = () => {
+    dispatch(editUserComment({id,commentId,commentData}));
+    onClose();
+    setEditModal(false)
+  };
 
-    console.log("comment id",commentId);
-
-   
-    const editCommentHandler = () =>{
-
-    }
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -32,12 +33,16 @@ export const EditCommentModal = ({ isOpen, onClose }) => {
           <ModalHeader>Edit comment</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input onChange={(e)=>setEditComment(e.target.value)}/>
+            <Input onChange={(e) => setCommentData(e.target.value)} />
           </ModalBody>
 
           <ModalFooter>
-            <Button className="tweet-btn" variant="ghost">
-              Save
+            <Button
+              className="tweet-btn"
+              onClick={() => editCommentHandler()}
+              variant="ghost"
+            >
+              update
             </Button>
           </ModalFooter>
         </ModalContent>

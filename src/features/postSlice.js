@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addComment, getAllComments } from "./commentApi";
+import { addComment, editUserComment, getAllComments } from "./commentApi";
 
 const initialState = {
   post: [],
@@ -232,7 +232,26 @@ export const postSlice = createSlice({
     [getAllComments.rejected]: (state) => {
       state.status = "rejected";
       state.error = true;
-    }
+    },
+    [editUserComment.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [editUserComment.fulfilled]: (state, { payload }) => {
+      console.log("state from slice",state);
+      console.log("post id", state.id);
+      console.log("comment id", state.commentId);
+      state.status = "succeed";
+      state.error = null;
+      state.post.find((item)=> item._id === state.id).comments=payload
+      // state.post =[...state.post,comments:[...payload]]
+      // state={...state,comments:[...payload]}
+    },
+    [editUserComment.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+  
   },
 });
 export const { getUserId , getSelectedPost,getCommentId} = postSlice.actions;

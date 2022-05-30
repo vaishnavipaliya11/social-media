@@ -43,18 +43,22 @@ export const getAllComments = createAsyncThunk(
   }
 )
 
-export const editComment = createAsyncThunk(
-  "post/edit",
-  async()=>{
+export const editUserComment = createAsyncThunk(
+  "post/editcomment",
+  async({id,commentId,commentData})=>{
     const token = localStorage.getItem("token");
+    console.log("com Data", commentData);
     try {
       const {data}= await axios.post(
-        `/api/comments/edit/:postId/:commentId`,
-        {commentData},
+        `/api/comments/edit/${id}/${commentId}`,
+        {commentData:{text:commentData}},
         {
-          headers:{authorization:token}
+          headers: {authorization:token}
         }
       )
+      
+    console.log(data.comments);
+    return data.comments
     } catch (error) {
       console.log(error);
     }

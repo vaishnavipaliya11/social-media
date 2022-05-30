@@ -31,16 +31,6 @@ const Post = ({ post }) => {
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
 
-  const bookMarkHandler = () => {
-    if (bookmark.find((item) => item._id === post._id)) {
-      dispatch(removeBookmark(post._id));
-    } else if (token) {
-      dispatch(addToBookmark(post._id));
-    } else {
-      navigate("/login");
-    }
-  };
-
   const isBookMarked = bookmark.find((item) => item._id === post._id);
   useEffect(() => {
     dispatch(getAllComments(post._id));
@@ -93,7 +83,7 @@ const Post = ({ post }) => {
 
         <section className="post-text"> {post.content}</section>
         <span className="post-bottom-icons">
-          {post?.likes.likeCount >= 1 ? (
+          {post?.likes?.likeCount >= 1 ? (
             <p
               className="icon"
               onClick={() => {
@@ -119,6 +109,7 @@ const Post = ({ post }) => {
               onOpen();
               dispatch(getSelectedPost(post));
               setCommentModal(true);
+              setEditCommentModal(false)
             }}
           >
             {commentModal && <CommentModal onClose={onClose} isOpen={isOpen} />}
@@ -148,6 +139,7 @@ const Post = ({ post }) => {
       </div>
 
       {post?.comments.map((commentData) => {
+        
         return (
           <div>
             <Box w="100%" p={2} color="black">
@@ -159,6 +151,7 @@ const Post = ({ post }) => {
                     onClick={() => {
                       onOpen();
                       setEditCommentModal(true);
+                      setCommentModal(false)
                       dispatch(getUserId(post._id));
                       dispatch(getCommentId(commentData._id));
                     }}

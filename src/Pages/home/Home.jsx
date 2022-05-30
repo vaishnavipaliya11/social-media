@@ -18,11 +18,12 @@ export const Home = () => {
     dispatch(getPost());
   }, []);
 
-  
+ 
   return (
     <div className="post-display-container">
       <PostModal />
       {post.map((post) => {
+        
         return <Post post={post} />;
       })}
     </div>
