@@ -34,7 +34,6 @@ const Post = ({ post }) => {
   const dispatch = useDispatch();
   const { bookmark } = useSelector((store) => store.bookmark);
   const { token } = useSelector((store) => store.timeline);
-  const navigate = useNavigate();
   const [editModal, setEditModal] = useState(false);
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
