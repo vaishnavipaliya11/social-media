@@ -157,8 +157,6 @@ const Post = ({ post }) => {
            
             color="black"
             boxShadow='xs' p='6' rounded='md' bg='white'
-            // boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
-            // boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
           >
             <Box display="flex" padding="0.5rem">
               <Box padding="0.5rem">
