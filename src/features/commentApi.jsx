@@ -57,10 +57,31 @@ export const editUserComment = createAsyncThunk(
         }
       )
       
-    console.log(data.comments);
     return data.comments
     } catch (error) {
       console.log(error);
+    }
+  }
+)
+
+export const deleteUserComment = createAsyncThunk(
+  "post/deletecomment",
+  async({id,commentId}) =>{
+    console.log(id);
+    console.log(commentId);
+    const token = localStorage.getItem("token")
+    try {
+      const {data}= await axios.post(
+        `/api/comments/delete/${id}/${commentId}`,
+        {},
+        {
+          headers:{authorization:token}
+        }
+      )
+      console.log(data);
+      return data.comments
+    } catch (error) {
+      
     }
   }
 )

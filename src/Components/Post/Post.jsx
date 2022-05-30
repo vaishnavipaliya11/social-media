@@ -3,11 +3,19 @@ import "./Post.css";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
-import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+  Menu,
+  Button,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Heading,
+} from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
+import { Avatar, AvatarBadge, AvatarGroup, WrapItem } from "@chakra-ui/react";
 import {
   deletePosts,
   getUserId,
@@ -18,7 +26,7 @@ import { addToBookmark, removeBookmark } from "../../features/bookmarkSlice";
 import { useNavigate } from "react-router-dom";
 import { addToLike, removeLike } from "../../features/postSlice";
 import { CommentModal } from "../modal/commentModal";
-import { getAllComments } from "../../features/commentApi";
+import { deleteUserComment, getAllComments } from "../../features/commentApi";
 import { EditCommentModal } from "../modal/editCommentModal";
 
 const Post = ({ post }) => {
@@ -36,7 +44,8 @@ const Post = ({ post }) => {
     dispatch(getAllComments(post._id));
   }, []);
 
-  const { usercomment } = useSelector((store) => store.post);
+  const { id, commentId } = useSelector((store) => store.post);
+
   return (
     <div>
       <div className="post-container">
@@ -109,7 +118,7 @@ const Post = ({ post }) => {
               onOpen();
               dispatch(getSelectedPost(post));
               setCommentModal(true);
-              setEditCommentModal(false)
+              setEditCommentModal(false);
             }}
           >
             {commentModal && <CommentModal onClose={onClose} isOpen={isOpen} />}
@@ -139,11 +148,36 @@ const Post = ({ post }) => {
       </div>
 
       {post?.comments.map((commentData) => {
-        
         return (
-          <div>
-            <Box w="100%" p={2} color="black">
-              {commentData.text}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            padding="0.5rem"
+            w="100%"
+           
+            color="black"
+            boxShadow='xs' p='6' rounded='md' bg='white'
+            // boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+            // boxShadow="rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"
+          >
+            <Box display="flex" padding="0.5rem">
+              <Box padding="0.5rem">
+                <WrapItem>
+                  <Avatar
+                    size="xs"
+                    name="Dan Abrahmov"
+                    src="https://bit.ly/dan-abramov"
+                  />
+                </WrapItem>
+              </Box>
+              <Box display="flex" flexDirection="column" padding="0.5rem">
+                <Heading size="lg" fontSize="10px">
+                  {commentData.username}
+                </Heading>
+                {commentData.text}
+              </Box>
+            </Box>
+            <Box>
               <Menu>
                 <MenuButton as={Button}>:</MenuButton>
                 <MenuList>
@@ -151,7 +185,7 @@ const Post = ({ post }) => {
                     onClick={() => {
                       onOpen();
                       setEditCommentModal(true);
-                      setCommentModal(false)
+                      setCommentModal(false);
                       dispatch(getUserId(post._id));
                       dispatch(getCommentId(commentData._id));
                     }}
@@ -161,11 +195,22 @@ const Post = ({ post }) => {
                   {editCommentModal && (
                     <EditCommentModal onClose={onClose} isOpen={isOpen} />
                   )}
-                  <MenuItem>Delete</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(
+                        deleteUserComment({
+                          id: post._id,
+                          commentId: commentData._id,
+                        })
+                      );
+                    }}
+                  >
+                    Delete
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>
-          </div>
+          </Box>
         );
       })}
     </div>

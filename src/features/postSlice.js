@@ -1,16 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addComment, editUserComment, getAllComments } from "./commentApi";
+import {
+  addComment,
+  deleteUserComment,
+  editUserComment,
+  getAllComments,
+} from "./commentApi";
 
 const initialState = {
   post: [],
   status: "idle",
   error: false,
   id: "",
-  singlePost:{},
-  commentId:""
+  singlePost: {},
+  commentId: "",
 };
-
 
 export const getPost = createAsyncThunk("post/getpost", async () => {
   try {
@@ -120,14 +124,13 @@ export const postSlice = createSlice({
     getUserId: (state, action) => {
       state.id = action.payload;
     },
-    getSelectedPost:(state,action)=>{
-      state.singlePost= action.payload
+    getSelectedPost: (state, action) => {
+      state.singlePost = action.payload;
     },
-    
-      getCommentId:(state,action)=>{
-        state.commentId= action.payload
-      }
-    
+
+    getCommentId: (state, action) => {
+      state.commentId = action.payload;
+    },
   },
   extraReducers: {
     [getPost.pending]: (state) => {
@@ -212,9 +215,14 @@ export const postSlice = createSlice({
     [addComment.fulfilled]: (state, { payload }) => {
       state.status = "succed";
       state.error = null;
-      state.post= state.post.map((eachpost)=> eachpost._id === state.singlePost._id ? {
-        ...eachpost, comments : payload 
-      }: eachpost)
+      state.post = state.post.map((eachpost) =>
+        eachpost._id === state.singlePost._id
+          ? {
+              ...eachpost,
+              comments: payload,
+            }
+          : eachpost
+      );
     },
     [addComment.rejected]: (state) => {
       state.status = "rejected";
@@ -238,21 +246,15 @@ export const postSlice = createSlice({
       state.error = null;
     },
     [editUserComment.fulfilled]: (state, { payload }) => {
-      console.log("state from slice",state);
-      console.log("post id", state.id);
-      console.log("comment id", state.commentId);
       state.status = "succeed";
       state.error = null;
-      state.post.find((item)=> item._id === state.id).comments=payload
-      // state.post =[...state.post,comments:[...payload]]
-      // state={...state,comments:[...payload]}
+      state.post.find((item) => item._id === state.id).comments = payload;
     },
     [editUserComment.rejected]: (state) => {
       state.status = "rejected";
       state.error = true;
     },
-  
   },
 });
-export const { getUserId , getSelectedPost,getCommentId} = postSlice.actions;
+export const { getUserId, getSelectedPost, getCommentId } = postSlice.actions;
 export default postSlice.reducer;
