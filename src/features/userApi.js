@@ -23,7 +23,7 @@ export const editUserProfile = createAsyncThunk(
 )
 
 export const getAllUsers = createAsyncThunk(
-    "",
+    "user/allusers",
     async() =>{
         try {
             const {data}= await axios.get(
@@ -32,6 +32,21 @@ export const getAllUsers = createAsyncThunk(
             return data.users
         } catch (error) {
             console.log(error);
+        }
+    }
+)
+
+export const getUserFromDb = createAsyncThunk(
+    "user/getuser",
+    async(_id) =>{
+        console.log(_id);
+        try {
+            const {data} = await axios.get(
+                `/api/users/${_id}`
+            )
+            console.log(data);
+        } catch (error) {
+           console.log(error); 
         }
     }
 )

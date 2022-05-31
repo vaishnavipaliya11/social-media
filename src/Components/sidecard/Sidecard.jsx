@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../features/userApi";
-import { Avatar, Box, Button, Heading, Link, useDisclosure } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Avatar, Box, Button, Heading, useDisclosure } from "@chakra-ui/react";
 import "./sidecard.css";
 export const Sidecard = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,6 @@ export const Sidecard = () => {
   }, []);
 
   const { allusers } = useSelector((store) => store.user);
-  console.log(allusers);
   return (
     <Box className="who-to-follow">
       <Box className="dis-row space-around">
@@ -18,19 +18,21 @@ export const Sidecard = () => {
       </Box>
 
       <Box>
-      {allusers.map(({firstName,lastName,userImage,username})=>{
+      {allusers.map(({firstName,lastName,userImage,username,_id})=>{
         return(
-          <Box className="dis-row space-around pd-med" >
+         
+          <Box className="dis-row space-around pd-med"  key={_id}>
           <Avatar
             className="avatar-img"
             alt="avatar"
             src={userImage}
           />
           <span className="dis-col">
-          <Link to={`/singleprofile/${profile_id}`}>
-            <Heading as="h2" size="sm" className="usr-name">
+          
+          <Link to={`/profile/${username}`}>
+          
               {firstName} {lastName}
-            </Heading>
+            
             </Link>
             <p className="usr-id">@{username}</p>
           </span>{" "}

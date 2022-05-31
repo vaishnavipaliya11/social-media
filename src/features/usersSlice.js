@@ -36,7 +36,6 @@ export const userSlice = createSlice({
             state.error = null;
           },
           [getAllUsers.fulfilled]: (state,  {payload} ) => {
-            console.log(payload);
             state.status = "succed";
             state.error = null;
             state.allusers = payload;

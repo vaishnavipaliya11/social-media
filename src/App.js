@@ -25,14 +25,15 @@ function App() {
         <Routes>
         <Route path="/explore" element={<Explore/>}/>
           <Route path="/liked" element={<Liked />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/bookmark" element={<Bookmark />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign" element={<Signup />} />
           <Route path="/"element={<Home/>}/>
           <Route path="/testApi" element={<Mockman />} />
-          <Route path="/singleprofile/profile_id" element={<SingleProfile/>}/>
+          <Route path="/singleprofile" element={<SingleProfile />} />
+         
         </Routes>
         <Sidecard />
       </div>

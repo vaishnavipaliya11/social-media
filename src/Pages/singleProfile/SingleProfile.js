@@ -9,6 +9,7 @@ export const SingleProfile = () => {
   const {userImage}= useSelector(store => store.user)
   return (
     <Box className="user-profile">
+    <h1>SingleProfile Page</h1>
       <Avatar
         size="2xl"
         src={userImage}

@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { Avatar, Box, Button, Heading, useDisclosure } from "@chakra-ui/react";
 import { EditProfile } from "../../Components/modal/editProfile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getUserFromDb } from "../../features/userApi";
 export const Profile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {userImage}= useSelector(store => store.user)
+  const {user,userImage}= useSelector(store => store.user)
+  const {_id}= useParams()
+
+  console.log(user);
+
+  // const dispatch = useDispatch()
+  // useEffect(()=>{
+  //   dispatch(getUserFromDb(_id))
+  // })
+
+
+
   return (
     <Box className="user-profile">
       <Avatar
