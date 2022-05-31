@@ -18,7 +18,7 @@ export const Sidecard = () => {
           <h3 className="usr-name">Vaishnavi paliya</h3>
           <p className="usr-id">@Vaishnavipaliya</p>
         </span>{" "}
-        <button className="btn-follow">Follow +</button>
+        <button className="btn-follow">Follow</button>
       </div>
       <div className="dis-row space-around">
       {" "}

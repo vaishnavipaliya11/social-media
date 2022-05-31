@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import "./Profile.css";
 import { Avatar, Box, Button, Heading, useDisclosure } from "@chakra-ui/react";
 import { EditProfile } from "../../Components/modal/editProfile";
+import { useSelector } from "react-redux";
 export const Profile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {userImage}= useSelector(store => store.user)
   return (
     <Box className="user-profile">
       <Avatar
         size="2xl"
-        src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
+        src={userImage}
       />
       <Box className="dis-col">
         {" "}

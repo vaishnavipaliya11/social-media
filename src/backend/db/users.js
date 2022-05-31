@@ -14,5 +14,8 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    bio:"tweet about web dev",
+    portfolio:"www.adarshBalika.com",
+    userImage:"https://minimaltoolkit.com/images/randomdata/female/101.jpg"
   },
 ];
