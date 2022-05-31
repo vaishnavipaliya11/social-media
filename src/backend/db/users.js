@@ -18,4 +18,16 @@ export const users = [
     portfolio:"www.adarshBalika.com",
     userImage:"https://minimaltoolkit.com/images/randomdata/female/101.jpg"
   },
+  {
+    _id: uuid(),
+    firstName: "Mohit",
+    lastName: "Kumar",
+    username: "mohit46",
+    password: "mohit123",
+    portfolio: "https://Mohit-Kumar.netlify.app/",
+    userImage:"https://minimaltoolkit.com/images/randomdata/male/95.jpg",
+    bio: "I am learning python",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
 ];

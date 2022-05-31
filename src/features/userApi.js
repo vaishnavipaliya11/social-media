@@ -21,3 +21,17 @@ export const editUserProfile = createAsyncThunk(
         }
     }
 )
+
+export const getAllUsers = createAsyncThunk(
+    "",
+    async() =>{
+        try {
+            const {data}= await axios.get(
+                "/api/users"
+            )
+            return data.users
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)

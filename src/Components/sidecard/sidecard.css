@@ -1,9 +1,8 @@
 .who-to-follow {
-    border: 1px solid black;
-    width: 23.66rem;
+    /* width: 23.66rem;
     padding: 0.5rem;
     margin: 1rem;
-    height: max-content;
+    height: max-content; */
   }
 
   .dis-row {
@@ -32,19 +31,14 @@
     flex-direction: column;
   }
 
-  .btn-follow {
+  .btn-follow{
     border: none;
     background: transparent;
     color:var(--primary-color);
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
-  }
-  .avatar-img {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    margin: 2px;
+    border-radius: 2rem;
   }
   .wtofol {
     color: #1e293b;

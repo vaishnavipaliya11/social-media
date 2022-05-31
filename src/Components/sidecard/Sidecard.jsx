@@ -1,38 +1,44 @@
-import React from "react";
-import "./sidecard.css"
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../features/userApi";
+import { Avatar, Box, Button, Heading, Link, useDisclosure } from "@chakra-ui/react";
+import "./sidecard.css";
 export const Sidecard = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, []);
+
+  const { allusers } = useSelector((store) => store.user);
+  console.log(allusers);
   return (
-    <div className="who-to-follow">
-      <div className="dis-row space-around">
+    <Box className="who-to-follow">
+      <Box className="dis-row space-around">
         <span className="wtofol">who to follow</span>{" "}
-        <button className="btn-follow">show-more</button>
-      </div>
-      <div className="dis-row space-around mrg-med">
-        {" "}
-        <img
-          className="avatar-img"
-          alt="avatar"
-          src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
-        />
-        <span className="dis-col">
-          <h3 className="usr-name">Vaishnavi paliya</h3>
-          <p className="usr-id">@Vaishnavipaliya</p>
-        </span>{" "}
-        <button className="btn-follow">Follow</button>
-      </div>
-      <div className="dis-row space-around">
-      {" "}
-      <img
-        className="avatar-img"
-        alt="avatar"
-        src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
-      />
-      <span className="dis-col">
-        <h3 className="usr-name">Vaishnavi paliya</h3>
-        <p className="usr-id">@Vaishnavipaliya</p>
-      </span>{" "}
-      <button className="btn-follow">Follow +</button>
-    </div>
-    </div>
+      </Box>
+
+      <Box>
+      {allusers.map(({firstName,lastName,userImage,username})=>{
+        return(
+          <Box className="dis-row space-around pd-med" >
+          <Avatar
+            className="avatar-img"
+            alt="avatar"
+            src={userImage}
+          />
+          <span className="dis-col">
+          <Link to={`/singleprofile/${profile_id}`}>
+            <Heading as="h2" size="sm" className="usr-name">
+              {firstName} {lastName}
+            </Heading>
+            </Link>
+            <p className="usr-id">@{username}</p>
+          </span>{" "}
+          <Button borderRadius="2rem" className="btn-follow">Follow</Button>
+        </Box>
+        )
+      })}
+      </Box>
+    </Box>
   );
 };

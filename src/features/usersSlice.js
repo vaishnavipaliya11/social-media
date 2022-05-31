@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editUserProfile } from "./userApi";
+import { editUserProfile, getAllUsers } from "./userApi";
 
 const initialState = {
     user: [],
     status: "idle",
     error: false,
-    userImage:""
+    userImage:"",
+    allusers:[]
 };
 
 export const userSlice = createSlice({
@@ -27,6 +28,20 @@ export const userSlice = createSlice({
             state.user = payload;
           },
           [editUserProfile.rejected]: (state) => {
+            state.status = "rejected";
+            state.error = true;
+          },
+          [getAllUsers.pending]: (state) => {
+            state.status = "loading";
+            state.error = null;
+          },
+          [getAllUsers.fulfilled]: (state,  {payload} ) => {
+            console.log(payload);
+            state.status = "succed";
+            state.error = null;
+            state.allusers = payload;
+          },
+          [getAllUsers.rejected]: (state) => {
             state.status = "rejected";
             state.error = true;
           },
