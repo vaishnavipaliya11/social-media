@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
   .profile-img {
     width: 8rem;
@@ -15,11 +14,7 @@
   .profile-bio {
     color: #1e293b;
   }
-  .user-stats {
-    color: #1e293b;
-    width: fit-content;
-    padding: 1rem;
-  }
+ 
   .user-stats h4 {
     margin: 0;
   }

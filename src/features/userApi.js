@@ -4,6 +4,7 @@ import axios from "axios";
 export const editUserProfile = createAsyncThunk(
     "user/edit",
     async(userdata) =>{
+        console.log("userdata",userdata);
         const token = localStorage.getItem("token")
         try {
            const {data}= await axios.post(
@@ -14,7 +15,7 @@ export const editUserProfile = createAsyncThunk(
                 }
            ) 
 
-           console.log(data);
+           console.log("data user",data.user);
            return data.user
         } catch (error) {
             console.log(error);
@@ -32,21 +33,6 @@ export const getAllUsers = createAsyncThunk(
             return data.users
         } catch (error) {
             console.log(error);
-        }
-    }
-)
-
-export const getUserFromDb = createAsyncThunk(
-    "user/getuser",
-    async(_id) =>{
-        console.log(_id);
-        try {
-            const {data} = await axios.get(
-                `/api/users/${_id}`
-            )
-            console.log(data);
-        } catch (error) {
-           console.log(error); 
         }
     }
 )

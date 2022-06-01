@@ -25,6 +25,7 @@ function App() {
         <Routes>
         <Route path="/explore" element={<Explore/>}/>
           <Route path="/liked" element={<Liked />} />
+          
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/bookmark" element={<Bookmark />} />

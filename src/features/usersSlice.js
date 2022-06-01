@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { editUserProfile, getAllUsers } from "./userApi";
 
 const initialState = {
-    user: [],
+    users: [],
     status: "idle",
     error: false,
     userImage:"",
-    allusers:[]
+    allusers:[],
 };
 
 export const userSlice = createSlice({
@@ -25,7 +25,9 @@ export const userSlice = createSlice({
           [editUserProfile.fulfilled]: (state, { payload }) => {
             state.status = "succed";
             state.error = null;
-            state.user = payload;
+            state.allusers = state.allusers.map((eachuser)=>{
+             return  eachuser.username === payload.username ? payload : eachuser
+            });
           },
           [editUserProfile.rejected]: (state) => {
             state.status = "rejected";
