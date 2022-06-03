@@ -5,22 +5,21 @@ import {
   getAllUsers,
   unfollowUser,
 } from "../../features/userApi";
-import { Link, useParams } from "react-router-dom";
-import { Avatar, Box, Button, Heading, useDisclosure } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
+import { Avatar, Box } from "@chakra-ui/react";
 import "./sidecard.css";
-export const Sidecard = ({ currentUser }) => {
+export const Sidecard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
 
-  const { allusers, followUser } = useSelector((store) => store.user);
+  const { allusers } = useSelector((store) => store.user);
 
-  const { user } = useSelector((store) => store.timeline);
-  // const currentUser = allusers?.find((item) => item.username === username);
+  const { token, user } = useSelector((store) => store.timeline);
+  const navigate= useNavigate()
 
-  console.log("user", user);
-  console.log("allusers", allusers);
+
   return (
     <Box className="who-to-follow">
       <Box className="dis-row space-around">
@@ -28,34 +27,40 @@ export const Sidecard = ({ currentUser }) => {
       </Box>
 
       <Box>
-        {allusers.map(({ firstName, lastName, userImage, username, _id,followers }) => {
-          return (
-            <Box className="dis-row space-around pd-med" key={_id}>
-              <Avatar className="avatar-img" alt="avatar" src={userImage} />
-              <span className="dis-col">
-                <Link to={`/profile/${username}`}>
-                  {firstName} {lastName}
-                </Link>
-                <p className="usr-id">@{username}</p>
-              </span>{" "}
-              <div className="text-center">
+        {allusers.map(
+          ({ firstName, lastName, userImage, username, _id, followers }) => {
+            return (
+              <Box className="dis-row space-around pd-med" key={_id}>
+                <Avatar className="avatar-img" alt="avatar" src={userImage} />
+                <span className="dis-col">
+                  <Link to={`/profile/${username}`}>
+                    {firstName} {lastName}
+                  </Link>
+                  <p className="usr-id">@{username}</p>
+                </span>{" "}
                 <div className="text-center">
-                  {followers?.find(
-                    (eachuser) => eachuser?.username === user?.username
-                  ) ? (
-                    <button onClick={() => dispatch(unfollowUser(_id))}>
-                      Unfollow
-                    </button>
+                  {token ? (
+                    <div>
+                      {followers?.find(
+                        (eachuser) => eachuser?.username === user?.username
+                      ) ? (
+                        <button className="btn-follow" onClick={() => dispatch(unfollowUser(_id))}>
+                          Unfollow
+                        </button>
+                      ) : (
+                        <button className="btn-follow" onClick={() => dispatch(followUserApi(_id))}>
+                          Follow
+                        </button>
+                      )}
+                    </div>
                   ) : (
-                    <button onClick={() => dispatch(followUserApi(_id))}>
-                      Follow
-                    </button>
+                    <button className="btn-follow" onClick={() => navigate("/login")}> follow </button>
                   )}
                 </div>
-              </div>
-            </Box>
-          );
-        })}
+              </Box>
+            );
+          }
+        )}
       </Box>
     </Box>
   );

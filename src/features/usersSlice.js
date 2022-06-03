@@ -51,7 +51,6 @@ export const userSlice = createSlice({
             state.error = null;
           },
           [followUserApi.fulfilled]: (state,  {payload} ) => {
-            console.log("payload from follow",payload);
             state.status = "succed";
             state.error = null;
             state.allusers = state.allusers.map(eachuser => {
@@ -73,7 +72,6 @@ export const userSlice = createSlice({
             state.error = null;
           },
           [unfollowUser.fulfilled]: (state,  {payload} ) => {
-            console.log(payload);
             state.status = "succed";
             state.error = null;
             state.allusers = state.allusers.map(eachuser => {
