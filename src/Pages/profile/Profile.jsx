@@ -12,7 +12,6 @@ export const Profile = () => {
   const { user } = useSelector((store) => store.timeline);
 
   const currentUser = allusers?.find((item) => item.username === username);
-console.log("currentuser",currentUser);
   return (
     <Box className="user-profile">
       <Avatar size="2xl" src={currentUser?.userImage} />
