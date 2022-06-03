@@ -12,7 +12,7 @@ export const Profile = () => {
   const { user } = useSelector((store) => store.timeline);
 
   const currentUser = allusers?.find((item) => item.username === username);
-
+console.log("currentuser",currentUser);
   return (
     <Box className="user-profile">
       <Avatar size="2xl" src={currentUser?.userImage} />
@@ -42,7 +42,7 @@ export const Profile = () => {
         <Box className="dis-row user-stats">
           <Box className="dis-col">
             <Heading as="h5" size="sm">
-              02
+              {currentUser?.following.length}
             </Heading>
             <Heading as="h5" size="sm">
               following
@@ -50,7 +50,7 @@ export const Profile = () => {
           </Box>
           <Box className="dis-col">
             <Heading as="h5" size="sm">
-              02
+             {currentUser?.followers.length}
             </Heading>
             <Heading as="h5" size="sm">
               followers
