@@ -30,4 +30,29 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    firstName: "Shiv",
+    lastName: "Kumar",
+    username: "Shiv46",
+    password: "Shiv123",
+    portfolio: "https://Shiv-Kumar.netlify.app/",
+    userImage:"https://minimaltoolkit.com/images/randomdata/male/12.jpg",
+    bio: "I am learning React",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    firstName: "Shraddha",
+    lastName: "Kumari",
+    username: "Shraddha46",
+    password: "Shraddha123",
+    portfolio: "https://Shiv-Kumar.netlify.app/",
+    userImage:"https://minimaltoolkit.com/images/randomdata/female/11.jpg",
+    bio: "I am learning Web developement",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  }
+
 ];

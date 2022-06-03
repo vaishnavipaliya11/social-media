@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { editUserProfile, getAllUsers } from "./userApi";
+import { editUserProfile, followUser, followUserApi, getAllUsers, unfollowUser } from "./userApi";
 
 const initialState = {
     users: [],
@@ -46,6 +46,51 @@ export const userSlice = createSlice({
             state.status = "rejected";
             state.error = true;
           },
+          [followUserApi.pending]: (state) => {
+            state.status = "loading";
+            state.error = null;
+          },
+          [followUserApi.fulfilled]: (state,  {payload} ) => {
+            console.log("payload from follow",payload);
+            state.status = "succed";
+            state.error = null;
+            state.allusers = state.allusers.map(eachuser => {
+              if (eachuser.username === payload.followUser.username) {
+                return payload.followUser;
+              }
+              if (eachuser.username === payload.user.username) {
+                return payload.user;
+              }
+              return eachuser;
+            }); 
+          },
+          [followUserApi.rejected]: (state) => {
+            state.status = "rejected";
+            state.error = true;
+          },
+          [unfollowUser.pending]: (state) => {
+            state.status = "loading";
+            state.error = null;
+          },
+          [unfollowUser.fulfilled]: (state,  {payload} ) => {
+            console.log(payload);
+            state.status = "succed";
+            state.error = null;
+            state.allusers = state.allusers.map(eachuser => {
+              if (eachuser.username === payload.followUser.username) {
+                return payload.followUser;
+              }
+              if (eachuser.username === payload.user.username) {
+                return payload.user;
+              }
+              return eachuser;
+            });;
+          },
+          [unfollowUser.rejected]: (state) => {
+            state.status = "rejected";
+            state.error = true;
+          }
+
     }
 })
  export const {uploadImage}= userSlice.actions 

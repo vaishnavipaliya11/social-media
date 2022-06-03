@@ -36,3 +36,43 @@ export const getAllUsers = createAsyncThunk(
         }
     }
 )
+
+export const followUserApi = createAsyncThunk(
+    "users/follow",
+    async(_id) =>{
+        const token = localStorage.getItem("token")
+        try {
+            const {data}= await axios.post(
+                `api/users/follow/${_id}`,
+                {},
+                {
+                    headers:{authorization:token}
+                }
+            )
+            console.log("follow user",data);
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
+export const unfollowUser = createAsyncThunk(
+    "users/unfollow",
+    async(_id) =>{
+        const token = localStorage.getItem("token")
+        try {
+            const {data}= await axios.post(
+                `api/users/unfollow/${_id}`,
+                {},
+                {
+                    headers:{authorization:token}
+                }
+            )
+            console.log("unfollow user",data);
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)

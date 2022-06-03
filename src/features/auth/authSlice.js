@@ -92,7 +92,8 @@ const authSlice = createSlice({
     [userSignUp.rejected]: (state, action) => {
       state.error = true;
       state.status = "rejected";
-    }
+    },
+    
   },
 });
 
