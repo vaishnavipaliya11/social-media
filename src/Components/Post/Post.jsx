@@ -38,7 +38,7 @@ const Post = ({ post }) => {
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
 
-  const isBookMarked = bookmark.find((item) => item._id === post._id);
+  const isBookMarked = bookmark?.find((item) => item._id === post._id);
   useEffect(() => {
     dispatch(getAllComments(post._id));
   }, []);

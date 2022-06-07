@@ -20,8 +20,9 @@ export const EditProfile = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const [img, setImg] = useState("");
   const { users, userImage,allusers } = useSelector((store) => store.user);
-  const { firstName, lastName, bio, portfolio, username } = users;
 
+  const {user} = useSelector(store => store.timeline)
+  const {firstName,lastName,bio,portfolio}= user
 
 
   const [userDetails, setUserDetails] = useState({
@@ -69,7 +70,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="First name"
                 name="firstName"
                 onChange={inputHandler}
-                value={userDetails.firstName}
+                defaultValue={userDetails.firstName  || firstName}
               />
             </FormControl>
 
@@ -79,7 +80,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Last name"
                 name="lastName"
                 onChange={inputHandler}
-                value={userDetails.lastName}
+                defaultValue={userDetails.lastName  || lastName}
               />
             </FormControl>
 
@@ -89,7 +90,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Bio"
                 name="bio"
                 onChange={inputHandler}
-                value={userDetails.bio}
+                defaultValue={userDetails.bio  || bio}
               />
             </FormControl>
 
@@ -99,7 +100,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Portfolio"
                 name="portfolio"
                 onChange={inputHandler}
-                value={userDetails.portfolio}
+                defaultValue={userDetails.portfolio  || portfolio}
               />
             </FormControl>
           </ModalBody>

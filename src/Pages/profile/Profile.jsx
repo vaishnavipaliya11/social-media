@@ -12,6 +12,7 @@ export const Profile = () => {
   const { user } = useSelector((store) => store.timeline);
 
   const currentUser = allusers?.find((item) => item.username === username);
+  const dispatch = useDispatch()
   return (
     <Box className="user-profile">
       <Avatar size="2xl" src={currentUser?.userImage} />
@@ -32,7 +33,9 @@ export const Profile = () => {
           {<EditProfile onClose={onClose} isOpen={isOpen} />}
         </div>
       ) : (
-        <div></div>
+        <div>
+        <button onClick={()=>dispatch(followUserApi(currentUser._id))}>follow</button>
+        </div>
       )}
 
       <Box className="profile-bio pd-med">{currentUser?.bio}</Box>

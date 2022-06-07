@@ -11,19 +11,17 @@ import { useDispatch } from "react-redux";
 export const Home = () => {
   const { postState, postDispatch } = usePost();
   const { createPost } = postState;
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
   const { post } = useSelector((store) => store.post);
 
   useEffect(() => {
     dispatch(getPost());
   }, []);
 
- 
   return (
     <div className="post-display-container">
       <PostModal />
       {post.map((post) => {
-        
         return <Post post={post} />;
       })}
     </div>
