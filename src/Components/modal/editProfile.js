@@ -19,11 +19,10 @@ import { uploadImage } from "../../features/usersSlice";
 export const EditProfile = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
   const [img, setImg] = useState("");
-  const { users, userImage,allusers } = useSelector((store) => store.user);
+  const { users, userImage, allusers } = useSelector((store) => store.user);
 
-  const {user} = useSelector(store => store.timeline)
-  const {firstName,lastName,bio,portfolio}= user
-
+  const { user } = useSelector((store) => store.timeline);
+  const { firstName, lastName, bio, portfolio } = user;
 
   const [userDetails, setUserDetails] = useState({
     firstName: "",
@@ -70,7 +69,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="First name"
                 name="firstName"
                 onChange={inputHandler}
-                defaultValue={userDetails.firstName  || firstName}
+                defaultValue={userDetails.firstName || firstName}
               />
             </FormControl>
 
@@ -80,7 +79,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Last name"
                 name="lastName"
                 onChange={inputHandler}
-                defaultValue={userDetails.lastName  || lastName}
+                defaultValue={userDetails.lastName || lastName}
               />
             </FormControl>
 
@@ -90,7 +89,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Bio"
                 name="bio"
                 onChange={inputHandler}
-                defaultValue={userDetails.bio  || bio}
+                defaultValue={userDetails.bio || bio}
               />
             </FormControl>
 
@@ -100,7 +99,7 @@ export const EditProfile = ({ isOpen, onClose }) => {
                 placeholder="Portfolio"
                 name="portfolio"
                 onChange={inputHandler}
-                defaultValue={userDetails.portfolio  || portfolio}
+                defaultValue={userDetails.portfolio || portfolio}
               />
             </FormControl>
           </ModalBody>

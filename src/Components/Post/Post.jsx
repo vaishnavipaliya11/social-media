@@ -153,9 +153,11 @@ const Post = ({ post }) => {
             justifyContent="space-between"
             padding="0.5rem"
             w="100%"
-           
             color="black"
-            boxShadow='xs' p='6' rounded='md' bg='white'
+            boxShadow="xs"
+            p="6"
+            rounded="md"
+            bg="white"
           >
             <Box display="flex" padding="0.5rem">
               <Box padding="0.5rem">
