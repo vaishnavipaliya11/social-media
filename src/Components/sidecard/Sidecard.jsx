@@ -1,38 +1,67 @@
-import React from "react";
-import "./sidecard.css"
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  followUserApi,
+  getAllUsers,
+  unfollowUser,
+} from "../../features/userApi";
+import { Link, useNavigate } from "react-router-dom";
+import { Avatar, Box } from "@chakra-ui/react";
+import "./sidecard.css";
 export const Sidecard = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, []);
+
+  const { allusers } = useSelector((store) => store.user);
+
+  const { token, user } = useSelector((store) => store.timeline);
+  const navigate= useNavigate()
+
+
   return (
-    <div className="who-to-follow">
-      <div className="dis-row space-around">
+    <Box className="who-to-follow">
+      <Box className="dis-row space-around">
         <span className="wtofol">who to follow</span>{" "}
-        <button className="btn-follow">show-more</button>
-      </div>
-      <div className="dis-row space-around mrg-med">
-        {" "}
-        <img
-          className="avatar-img"
-          alt="avatar"
-          src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
-        />
-        <span className="dis-col">
-          <h3 className="usr-name">Vaishnavi paliya</h3>
-          <p className="usr-id">@Vaishnavipaliya</p>
-        </span>{" "}
-        <button className="btn-follow">Follow +</button>
-      </div>
-      <div className="dis-row space-around">
-      {" "}
-      <img
-        className="avatar-img"
-        alt="avatar"
-        src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
-      />
-      <span className="dis-col">
-        <h3 className="usr-name">Vaishnavi paliya</h3>
-        <p className="usr-id">@Vaishnavipaliya</p>
-      </span>{" "}
-      <button className="btn-follow">Follow +</button>
-    </div>
-    </div>
+      </Box>
+
+      <Box>
+        {allusers.map(
+          ({ firstName, lastName, userImage, username, _id, followers }) => {
+            return (
+              <Box className="dis-row space-around pd-med" key={_id}>
+                <Avatar className="avatar-img" alt="avatar" src={userImage} />
+                <span className="dis-col">
+                  <Link to={`/profile/${username}`}>
+                    {firstName} {lastName}
+                  </Link>
+                  <p className="usr-id">@{username}</p>
+                </span>{" "}
+                <div className="text-center">
+                  {token ? (
+                    <div>
+                      {followers?.find(
+                        (eachuser) => eachuser?.username === user?.username
+                      ) ? (
+                        <button className="btn-follow" onClick={() => dispatch(unfollowUser(_id))}>
+                          Unfollow
+                        </button>
+                      ) : (
+                        <button className="btn-follow" onClick={() => dispatch(followUserApi(_id))}>
+                          Follow
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <button className="btn-follow" onClick={() => navigate("/login")}> follow </button>
+                  )}
+                </div>
+              </Box>
+            );
+          }
+        )}
+      </Box>
+    </Box>
   );
 };

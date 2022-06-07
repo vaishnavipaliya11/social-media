@@ -1,11 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import {
+  addComment,
+  deleteUserComment,
+  editUserComment,
+  getAllComments,
+} from "./commentApi";
 
 const initialState = {
   post: [],
   status: "idle",
   error: false,
   id: "",
+  singlePost: {},
+  commentId: "",
 };
 
 export const getPost = createAsyncThunk("post/getpost", async () => {
@@ -29,6 +37,7 @@ export const createPosts = createAsyncThunk("post/createPost", async (post) => {
       data: { postData: post },
       headers: { authorization: token },
     });
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error.response);
@@ -115,6 +124,13 @@ export const postSlice = createSlice({
     getUserId: (state, action) => {
       state.id = action.payload;
     },
+    getSelectedPost: (state, action) => {
+      state.singlePost = action.payload;
+    },
+
+    getCommentId: (state, action) => {
+      state.commentId = action.payload;
+    },
   },
   extraReducers: {
     [getPost.pending]: (state) => {
@@ -192,7 +208,53 @@ export const postSlice = createSlice({
       state.status = "rejected";
       state.error = true;
     },
+    [addComment.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [addComment.fulfilled]: (state, { payload }) => {
+      state.status = "succed";
+      state.error = null;
+      state.post = state.post.map((eachpost) =>
+        eachpost._id === state.singlePost._id
+          ? {
+              ...eachpost,
+              comments: payload,
+            }
+          : eachpost
+      );
+    },
+    [addComment.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+    [getAllComments.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [getAllComments.fulfilled]: (state, { payload }) => {
+      state.status = "succed";
+      state.error = null;
+      state.usercomment = payload;
+    },
+    [getAllComments.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+    [editUserComment.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [editUserComment.fulfilled]: (state, { payload }) => {
+      state.status = "succeed";
+      state.error = null;
+      state.post.find((item) => item._id === state.id).comments = payload;
+    },
+    [editUserComment.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
   },
 });
-export const { getUserId } = postSlice.actions;
+export const { getUserId, getSelectedPost, getCommentId } = postSlice.actions;
 export default postSlice.reducer;

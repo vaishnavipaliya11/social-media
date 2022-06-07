@@ -16,6 +16,14 @@ import {
   getAllUserPostsHandler,
 } from "./backend/controllers/PostController";
 import {
+  getPostCommentsHandler,
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  upvotePostCommentHandler,
+  downvotePostCommentHandler,
+} from "./backend/controllers/CommentsController";
+import {
   followUserHandler,
   getAllUsersHandler,
   getUserHandler,
@@ -61,7 +69,7 @@ export function makeServer({ environment = "development" } = {}) {
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));
       this.get("/posts/:postId", getPostHandler.bind(this));
-      this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));
+      this.get("/posts/user/:userId", getAllUserPostsHandler.bind(this));
 
       // post routes (private)
       this.post("/posts", createPostHandler.bind(this));
@@ -70,6 +78,27 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/posts/like/:postId", likePostHandler.bind(this));
       this.post("/posts/dislike/:postId", dislikePostHandler.bind(this));
 
+      //post comments routes (public)
+      this.get("/comments/:postId", getPostCommentsHandler.bind(this));
+
+      //post comments routes (private)
+      this.post("/comments/add/:postId", addPostCommentHandler.bind(this));
+      this.post(
+        "/comments/edit/:postId/:commentId",
+        editPostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/delete/:postId/:commentId",
+        deletePostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/upvote/:postId/:commentId",
+        upvotePostCommentHandler.bind(this)
+      );
+      this.post(
+        "/comments/downvote/:postId/:commentId",
+        downvotePostCommentHandler.bind(this)
+      );
       // user routes (public)
       this.get("/users", getAllUsersHandler.bind(this));
       this.get("/users/:userId", getUserHandler.bind(this));
@@ -87,6 +116,8 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+
+      this.passthrough('https://firebasestorage.googleapis.com/**');
     },
   });
 }

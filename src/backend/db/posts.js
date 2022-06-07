@@ -7,7 +7,6 @@ import { formatDate } from "../utils/authUtils";
  * */
 
 export const posts = [
-  
   {
     _id: uuid(),
     content:
@@ -17,21 +16,96 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "Roman",
-    createdAt: formatDate(),
+    username: "adarshbalika",
+    userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
+    createdAt: "2022/01/01",
+    
     updatedAt: formatDate(),
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+text:"true",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      // {
+      //   _id: uuid(),
+      //   username: "sohamshah",
+      //   text:"but it takes intrest too",
+      //   votes: {
+      //     upvotedBy: [],
+      //     downvotedBy: [],
+      //   },
+      // },
+    ],
   },
-
   {
     _id: uuid(),
-    content:
-      "When I wrote this code, only God and I understood what I did. Now only God knows.",
+    content: "React makes front-end easy.",
     likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "Christina",
+    username: "adarshbalika",
+    userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
+    comments: [
+      // {
+      //   _id: uuid(),
+      //   username: "shubhamsoni",
+      //   text:"that's the reason of using react",
+      //   votes: {
+      //     upvotedBy: [],
+      //     downvotedBy: [],
+      //   },
+      // },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text:"true",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "The only way to learn a new programming language is by writing programs in it.",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "adarshbad",
+    userId: "0af3d380-4d9e-4b80-88af-b0a59483de44",
+    comments: [
+      // {
+      //   _id: uuid(),
+      //   username: "shubhamsoni",
+      //   text:"true",
+      //   votes: {
+      //     upvotedBy: [],
+      //     downvotedBy: [],
+      //   },
+      // },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text:"true",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

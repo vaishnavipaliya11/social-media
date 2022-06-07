@@ -4,6 +4,10 @@
     --txt-clr:#ffffff;
 }
 
+.comment-input{
+    padding-top: 1rem;
+}
+
 .tweet-btn{
     color: var(--primary-color) !important;
     font-weight: 500;

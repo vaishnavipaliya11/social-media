@@ -20,8 +20,6 @@ export const removeUserData = () =>{
 export const userLogin = createAsyncThunk(
   "auth/login",
   async ({username,password}) => {
-    console.log(username);
-    console.log(password);
     try {
       const response = await axios({
         method: "POST",
@@ -94,7 +92,8 @@ const authSlice = createSlice({
     [userSignUp.rejected]: (state, action) => {
       state.error = true;
       state.status = "rejected";
-    }
+    },
+    
   },
 });
 
