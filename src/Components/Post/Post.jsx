@@ -23,7 +23,7 @@ import {
   getCommentId,
 } from "../../features/postSlice";
 import { addToBookmark, removeBookmark } from "../../features/bookmarkSlice";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { addToLike, removeLike } from "../../features/postSlice";
 import { CommentModal } from "../modal/commentModal";
 import { deleteUserComment, getAllComments } from "../../features/commentApi";
@@ -43,7 +43,8 @@ const Post = ({ post }) => {
     dispatch(getAllComments(post._id));
   }, []);
 
-  const { id, commentId } = useSelector((store) => store.post);
+  
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -94,18 +95,22 @@ const Post = ({ post }) => {
           {post?.likes?.likeCount >= 1 ? (
             <p
               className="icon"
-              onClick={() => {
-                dispatch(removeLike(post._id));
-              }}
+              onClick={() =>
+                token ? 
+                dispatch(removeLike(post._id)) :
+                navigate("/login")
+              }
             >
               <AiFillLike />
             </p>
           ) : (
             <p
               className="icon"
-              onClick={() => {
-                dispatch(addToLike(post._id));
-              }}
+              onClick={() => 
+                token ?
+                dispatch(addToLike(post._id)) :
+                navigate("/login")
+              }
             >
               <AiOutlineLike />
             </p>
@@ -127,18 +132,22 @@ const Post = ({ post }) => {
           {isBookMarked ? (
             <p
               className="icon"
-              onClick={() => {
-                dispatch(removeBookmark(post._id));
-              }}
+              onClick={() => 
+                token ? 
+                dispatch(removeBookmark(post._id)) : 
+                navigate("/login")
+              }
             >
               <BsFillBookmarkFill />
             </p>
           ) : (
             <p
               className="icon"
-              onClick={() => {
-                dispatch(addToBookmark(post._id));
-              }}
+              onClick={() =>
+                token ? 
+                dispatch(addToBookmark(post._id)):
+                navigate("/login")
+              }
             >
               <BsBookmark />
             </p>
@@ -146,7 +155,7 @@ const Post = ({ post }) => {
         </span>
       </div>
 
-      {post?.comments.map((commentData) => {
+      {post?.comments?.map((commentData) => {
         return (
           <Box
             display="flex"
@@ -171,9 +180,9 @@ const Post = ({ post }) => {
               </Box>
               <Box display="flex" flexDirection="column" padding="0.5rem">
                 <Heading size="lg" fontSize="10px">
-                  {commentData.username}
+                  {commentData?.username}
                 </Heading>
-                {commentData.text}
+                {commentData?.text}
               </Box>
             </Box>
             <Box>
