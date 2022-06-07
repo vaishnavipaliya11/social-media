@@ -7,7 +7,6 @@ import { getPost } from '../../features/postSlice'
 export const Explore = () => {
   const dispatch = useDispatch()
   const {post}= useSelector(store => store.post)
-  console.log(post);
   useEffect(() => {
     dispatch(getPost());
   }, []);
