@@ -14,7 +14,7 @@ export const Explore = () => {
     <div className="post-display-container">
     <PostModal />
       {post.map((post) => {
-        return <Post post={post}/>;
+        return <Post key={post._id} post={post}/>;
       })}
     </div>
   )
