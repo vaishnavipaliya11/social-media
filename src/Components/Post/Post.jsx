@@ -53,7 +53,7 @@ const Post = ({ post }) => {
           <span className="dis-row">
             <img
               className="avatar-img"
-              src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
+              src={post.userAvtar}
             />
             <h3 className="user-name">{post.username}</h3>
             <p className="user-id">@{post.username}</p>
@@ -174,7 +174,7 @@ const Post = ({ post }) => {
                   <Avatar
                     size="xs"
                     name="Dan Abrahmov"
-                    src="https://bit.ly/dan-abramov"
+                    src={commentData?.userAvtar}
                   />
                 </WrapItem>
               </Box>

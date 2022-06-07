@@ -23,7 +23,7 @@ const LeftNav = () => {
       </div>
       <div className="navbar-options">
         <FaWpexplorer className="navbar-icons" />
-        <h3>Explore</h3>
+        <h3 onClick={()=> navigate("/explore")}>Explore</h3>
       </div>
       <div className="navbar-options">
         <BsBookmark className="navbar-icons" />
