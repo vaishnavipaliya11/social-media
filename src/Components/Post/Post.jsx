@@ -43,18 +43,14 @@ const Post = ({ post }) => {
     dispatch(getAllComments(post._id));
   }, []);
 
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div>
       <div className="post-container">
         <div className="menu-container">
           <span className="dis-row">
-            <img
-              className="avatar-img"
-              src={post.userAvtar}
-            />
+            <img className="avatar-img" src={post.userAvtar} />
             <h3 className="user-name">{post.username}</h3>
             <p className="user-id">@{post.username}</p>
           </span>
@@ -96,9 +92,7 @@ const Post = ({ post }) => {
             <p
               className="icon"
               onClick={() =>
-                token ? 
-                dispatch(removeLike(post._id)) :
-                navigate("/login")
+                token ? dispatch(removeLike(post._id)) : navigate("/login")
               }
             >
               <AiFillLike />
@@ -106,10 +100,8 @@ const Post = ({ post }) => {
           ) : (
             <p
               className="icon"
-              onClick={() => 
-                token ?
-                dispatch(addToLike(post._id)) :
-                navigate("/login")
+              onClick={() =>
+                token ? dispatch(addToLike(post._id)) : navigate("/login")
               }
             >
               <AiOutlineLike />
@@ -132,10 +124,8 @@ const Post = ({ post }) => {
           {isBookMarked ? (
             <p
               className="icon"
-              onClick={() => 
-                token ? 
-                dispatch(removeBookmark(post._id)) : 
-                navigate("/login")
+              onClick={() =>
+                token ? dispatch(removeBookmark(post._id)) : navigate("/login")
               }
             >
               <BsFillBookmarkFill />
@@ -144,9 +134,7 @@ const Post = ({ post }) => {
             <p
               className="icon"
               onClick={() =>
-                token ? 
-                dispatch(addToBookmark(post._id)):
-                navigate("/login")
+                token ? dispatch(addToBookmark(post._id)) : navigate("/login")
               }
             >
               <BsBookmark />
