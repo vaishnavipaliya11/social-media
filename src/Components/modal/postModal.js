@@ -12,7 +12,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-import { usePost } from "../../context/postContext";
+
 import { useSelector, useDispatch } from "react-redux";
 import { createPosts } from "../../features/postSlice.js";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +20,6 @@ import "./modal.css"
 
 export const PostModal = ({ isOpen, onClose }) => {
   const [userTweet, setUserTweet] = useState("");
-  const { postDispatch } = usePost();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.timeline);

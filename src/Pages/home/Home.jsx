@@ -1,15 +1,12 @@
 import React from "react";
 import "./home.css";
 import { PostModal } from "../../Components/modal/postModal";
-import { usePost } from "../../context/postContext";
 import { Post } from "../../Components/Post/Post";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getPost } from "../../features/postSlice";
 import { useDispatch } from "react-redux";
 export const Home = () => {
-  const { postState, postDispatch } = usePost();
-  const { createPost } = postState;
   const dispatch = useDispatch();
   const { post } = useSelector((store) => store.post);
 
