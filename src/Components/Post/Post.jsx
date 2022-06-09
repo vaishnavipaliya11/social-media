@@ -3,6 +3,7 @@ import "./Post.css";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
+import { IoOptions } from "react-icons/io5";
 import {
   Menu,
   Button,
@@ -58,14 +59,15 @@ const Post = ({ post }) => {
           <span>
             <Menu>
               <MenuButton className="edit-btn" as={Button}>
-                :
+                <IoOptions />
               </MenuButton>
 
               <MenuList>
                 <MenuItem
                   onClick={() => {
                     onOpen();
-                    dispatch(getUserId(post._id));
+                    token ? dispatch(getUserId(post._id)) : navigate("/login");
+
                     setEditModal(true);
                   }}
                 >
@@ -76,7 +78,9 @@ const Post = ({ post }) => {
                 )}
                 <MenuItem
                   onClick={() => {
-                    dispatch(deletePosts(post._id));
+                    token ? 
+                    dispatch(deletePosts(post._id)) :
+                    navigate("/login")
                   }}
                 >
                   Delete
@@ -112,7 +116,8 @@ const Post = ({ post }) => {
             className="comment-btn"
             onClick={() => {
               onOpen();
-              dispatch(getSelectedPost(post));
+              token ? dispatch(getSelectedPost(post)) : navigate("/login")
+              
               setCommentModal(true);
               setEditCommentModal(false);
             }}
@@ -188,18 +193,6 @@ const Post = ({ post }) => {
                   {editCommentModal && (
                     <EditCommentModal onClose={onClose} isOpen={isOpen} />
                   )}
-                  <MenuItem
-                    onClick={() => {
-                      dispatch(
-                        deleteUserComment({
-                          id: post._id,
-                          commentId: commentData._id,
-                        })
-                      );
-                    }}
-                  >
-                    Delete
-                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>
