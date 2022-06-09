@@ -29,14 +29,8 @@ const LeftNav = () => {
         <BsBookmark className="navbar-icons" />
         <h3 onClick={() => navigate("/bookmark")}>BookMark</h3>
       </div>
-      <div className="navbar-options" onClick={() => navigate("/notification")}>
-        <MdOutlineNotificationsActive className="navbar-icons" />
-        <h3>Notification</h3>
-      </div>
-      <div className="navbar-options">
-        <AiOutlineHeart className="navbar-icons" />
-        <h3 onClick={() => navigate("/liked")}>Liked</h3>
-      </div>
+      
+      
       <div className="navbar-options">
         <CgProfile className="navbar-icons" />
         <h3 onClick={() => navigate(`/profile/${user?.username}`)}>Profile</h3>

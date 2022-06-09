@@ -4,7 +4,7 @@ import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Button, header, useColorMode } from "@chakra-ui/react";
+import { Box, Button, header, useColorMode } from "@chakra-ui/react";
 export const TopNav = () => {
   const navigate = useNavigate();
   const { user, token } = useSelector((store) => store.timeline);
@@ -16,7 +16,7 @@ export const TopNav = () => {
 
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <span className="top-nav">
+    <Box className="top-nav">
       <header>
         <Button onClick={toggleColorMode}>
           <MdOutlineDarkMode /> {colorMode === "light" ? "" : ""}
@@ -32,6 +32,6 @@ export const TopNav = () => {
           <FaUserAlt />
         </h3>
       )}
-    </span>
+    </Box>
   );
 };
