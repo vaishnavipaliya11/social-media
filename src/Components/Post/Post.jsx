@@ -99,7 +99,7 @@ const Post = ({ post }) => {
                 token ? dispatch(removeLike(post._id)) : navigate("/login")
               }
             >
-              <AiFillLike />
+             <Box className="dis-row"><AiFillLike /><span>{post?.likes?.likeCount}</span></Box> 
             </p>
           ) : (
             <p

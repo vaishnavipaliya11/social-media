@@ -2,12 +2,10 @@
 
 .post-container {
   width: 500px;
-  /* color: #1e293b; */
   padding: 0.5rem;
   margin: 1rem;
-  /* background-color: var(--second-bg-clr); */
-  border-radius: 1.5rem;
 
+  border-radius: 1.5rem;
 }
 
 .user-id {
@@ -56,14 +54,14 @@
   justify-content: space-between;
 }
 
-.edit-btn{
+.edit-btn {
   background: none;
   font-size: 1.5rem;
 }
 
-.post-text{
+.post-text {
   margin-bottom: 1.5rem;
 }
-.comment-btn{
-background-color: transparent;
+.comment-btn {
+  background-color: transparent;
 }
