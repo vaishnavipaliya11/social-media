@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/authContext";
 import { PostProvider } from "./context/postContext";
 import { ChakraProvider } from "@chakra-ui/react";
 import { store } from "./app/store";
@@ -14,7 +13,7 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+     
         <PostProvider>
           <ChakraProvider>
             <Provider store={store}>
@@ -22,7 +21,6 @@ ReactDOM.render(
             </Provider>
           </ChakraProvider>
         </PostProvider>
-      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

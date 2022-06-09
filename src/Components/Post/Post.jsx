@@ -88,29 +88,25 @@ const Post = ({ post }) => {
 
         <section className="post-text"> {post.content}</section>
         <span className="post-bottom-icons">
-        {post?.likes?.likeCount >= 1 ? (
-          <p
-            className="icon"
-            onClick={() =>
-              token ? 
-              dispatch(removeLike(post._id)) :
-              navigate("/login")
-            }
-          >
-            <AiFillLike />
-          </p>
-        ) : (
-          <p
-            className="icon"
-            onClick={() => 
-              token ?
-              dispatch(addToLike(post._id)) :
-              navigate("/login")
-            }
-          >
-            <AiOutlineLike />
-          </p>
-        )}
+          {post?.likes?.likeCount >= 1 ? (
+            <p
+              className="icon"
+              onClick={() =>
+                token ? dispatch(removeLike(post._id)) : navigate("/login")
+              }
+            >
+              <AiFillLike />
+            </p>
+          ) : (
+            <p
+              className="icon"
+              onClick={() =>
+                token ? dispatch(addToLike(post._id)) : navigate("/login")
+              }
+            >
+              <AiOutlineLike />
+            </p>
+          )}
 
           <button
             className="comment-btn"
@@ -154,11 +150,8 @@ const Post = ({ post }) => {
             justifyContent="space-between"
             padding="0.5rem"
             w="100%"
-            color="black"
-            boxShadow="xs"
             p="6"
             rounded="md"
-            bg="white"
           >
             <Box display="flex" padding="0.5rem">
               <Box padding="0.5rem">

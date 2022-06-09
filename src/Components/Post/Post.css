@@ -2,10 +2,10 @@
 
 .post-container {
   width: 500px;
-  color: #1e293b;
+  /* color: #1e293b; */
   padding: 0.5rem;
   margin: 1rem;
-  background-color: var(--second-bg-clr);
+  /* background-color: var(--second-bg-clr); */
   border-radius: 1.5rem;
 
 }
@@ -47,7 +47,7 @@
 
 .icon :hover {
   cursor: pointer;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
 }
 
 .menu-container {

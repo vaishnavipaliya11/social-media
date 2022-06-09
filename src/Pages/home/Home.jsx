@@ -4,7 +4,6 @@ import { PostModal } from "../../Components/modal/postModal";
 import { usePost } from "../../context/postContext";
 import { Post } from "../../Components/Post/Post";
 import { useEffect } from "react";
-import { getPostFromDb } from "../../utilities/getPost";
 import { useSelector } from "react-redux";
 import { getPost } from "../../features/postSlice";
 import { useDispatch } from "react-redux";

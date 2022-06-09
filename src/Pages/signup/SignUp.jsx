@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+
 import { useState } from "react";
 import axios from "axios";
 import { userSignUp } from "../../features/auth/authSlice";
@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 export const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const { auth, setAuth } = useAuth();
   const [erorMsg, setErrorMsg] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
