@@ -83,7 +83,8 @@ export const deletePosts = createAsyncThunk("post/delete", async (id) => {
   }
 });
 
-export const addToLike = createAsyncThunk("like/add", async (postId) => {
+export const addToLike = createAsyncThunk("like/add", async (postId,{rejectWithValue}) => {
+  console.log(postId);
   const token = localStorage.getItem("token");
   try {
     const { data } = await axios.post(
@@ -94,13 +95,16 @@ export const addToLike = createAsyncThunk("like/add", async (postId) => {
       }
     );
 
+    console.log("ad to like",data);
     return data.posts;
   } catch (error) {
-    console.log(error.data);
+
+    return rejectWithValue(error.message);
+    
   }
 });
 
-export const removeLike = createAsyncThunk("like/remove", async (postId) => {
+export const removeLike = createAsyncThunk("like/remove", async (postId,{rejectWithValue}) => {
   const token = localStorage.getItem("token");
   try {
     const { data } = await axios.post(
@@ -111,9 +115,10 @@ export const removeLike = createAsyncThunk("like/remove", async (postId) => {
       }
     );
 
+    console.log("remove to like",data);
     return data.posts;
   } catch (error) {
-    console.log(error.data);
+    return rejectWithValue(error.message);
   }
 });
 
@@ -187,11 +192,13 @@ export const postSlice = createSlice({
       state.error = null;
     },
     [addToLike.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.status = "succed";
       state.error = null;
       state.post = payload;
     },
     [addToLike.rejected]: (state) => {
+      console.log("rejected");
       state.status = "rejected";
       state.error = true;
     },

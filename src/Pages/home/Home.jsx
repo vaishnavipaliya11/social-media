@@ -21,8 +21,8 @@ export const Home = () => {
   return (
     <div className="post-display-container">
       <PostModal />
-      {post.map((post) => {
-        return <Post post={post}/>;
+      {post?.map((post) => {
+        return <Post key = {post._id}post={post}/>;
       })}
     </div>
   );

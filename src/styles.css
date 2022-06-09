@@ -2,7 +2,11 @@
 
 :root{
     --txt-clr:#ffffff;
+    --bg-clr:#fafafa;
+    --second-bg-clr:#FAFAFA;
 }
+
+
 
 .comment-input{
     padding-top: 1rem;
@@ -17,4 +21,16 @@
     background-color: var(--primary-color) !important;
     color: var(--txt-clr) !important;
     font-weight: 500;
+}
+
+::-webkit-scrollbar {
+    width: 0.1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: white;
 }

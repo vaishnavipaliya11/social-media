@@ -15,7 +15,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
-import { Avatar, AvatarBadge, AvatarGroup, WrapItem } from "@chakra-ui/react";
+import { Avatar, WrapItem } from "@chakra-ui/react";
 import {
   deletePosts,
   getUserId,
@@ -38,7 +38,7 @@ const Post = ({ post }) => {
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
 
-  const isBookMarked = bookmark?.find((item) => item._id === post._id);
+  const isBookMarked = bookmark?.find((postId) => postId === post._id);
   useEffect(() => {
     dispatch(getAllComments(post._id));
   }, []);
@@ -46,9 +46,9 @@ const Post = ({ post }) => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div className="post-container">
-        <div className="menu-container">
+    <Box>
+      <Box className="post-container">
+        <Box className="menu-container">
           <span className="dis-row">
             <img className="avatar-img" src={post.userAvtar} />
             <h3 className="user-name">{post.username}</h3>
@@ -84,32 +84,36 @@ const Post = ({ post }) => {
               </MenuList>
             </Menu>{" "}
           </span>
-        </div>
+        </Box>
 
         <section className="post-text"> {post.content}</section>
         <span className="post-bottom-icons">
-          {post?.likes?.likeCount >= 1 ? (
-            <p
-              className="icon"
-              onClick={() =>
-                token ? dispatch(removeLike(post._id)) : navigate("/login")
-              }
-            >
-              <AiFillLike />
-            </p>
-          ) : (
-            <p
-              className="icon"
-              onClick={() =>
-                token ? dispatch(addToLike(post._id)) : navigate("/login")
-              }
-            >
-              <AiOutlineLike />
-            </p>
-          )}
-
-          <Button
+        {post?.likes?.likeCount >= 1 ? (
+          <p
             className="icon"
+            onClick={() =>
+              token ? 
+              dispatch(removeLike(post._id)) :
+              navigate("/login")
+            }
+          >
+            <AiFillLike />
+          </p>
+        ) : (
+          <p
+            className="icon"
+            onClick={() => 
+              token ?
+              dispatch(addToLike(post._id)) :
+              navigate("/login")
+            }
+          >
+            <AiOutlineLike />
+          </p>
+        )}
+
+          <button
+            className="comment-btn"
             onClick={() => {
               onOpen();
               dispatch(getSelectedPost(post));
@@ -119,7 +123,7 @@ const Post = ({ post }) => {
           >
             {commentModal && <CommentModal onClose={onClose} isOpen={isOpen} />}
             <BiComment />
-          </Button>
+          </button>
 
           {isBookMarked ? (
             <p
@@ -141,7 +145,7 @@ const Post = ({ post }) => {
             </p>
           )}
         </span>
-      </div>
+      </Box>
 
       {post?.comments?.map((commentData) => {
         return (
@@ -209,7 +213,7 @@ const Post = ({ post }) => {
           </Box>
         );
       })}
-    </div>
+    </Box>
   );
 };
 
