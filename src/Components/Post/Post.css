@@ -2,9 +2,10 @@
 
 .post-container {
   width: 500px;
-  color: #1e293b;
   padding: 0.5rem;
-  border: 2px solid black;
+  margin: 1rem;
+
+  border-radius: 1.5rem;
 }
 
 .user-id {
@@ -15,6 +16,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  padding-bottom: 0.5rem;
 }
 
 .dis-col {
@@ -42,7 +45,6 @@
 
 .icon :hover {
   cursor: pointer;
-  color: var(--primary-color);
 }
 
 .menu-container {
@@ -51,11 +53,14 @@
   justify-content: space-between;
 }
 
-.edit-btn{
+.edit-btn {
   background: none;
   font-size: 1.5rem;
 }
 
-.post-text{
+.post-text {
   margin-bottom: 1.5rem;
+}
+.comment-btn {
+  background-color: transparent;
 }

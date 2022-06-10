@@ -3,6 +3,7 @@ import "./Post.css";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { BiComment } from "react-icons/bi";
+import { IoOptions } from "react-icons/io5";
 import {
   Menu,
   Button,
@@ -15,7 +16,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { EdiPostModal } from "../modal/editModal";
 import { useDispatch, useSelector } from "react-redux";
 import { Box } from "@chakra-ui/react";
-import { Avatar, AvatarBadge, AvatarGroup, WrapItem } from "@chakra-ui/react";
+import { Avatar, WrapItem } from "@chakra-ui/react";
 import {
   deletePosts,
   getUserId,
@@ -38,23 +39,19 @@ const Post = ({ post }) => {
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
 
-  const isBookMarked = bookmark?.find((item) => item._id === post._id);
+  const isBookMarked = bookmark?.find((postId) => postId === post._id);
   useEffect(() => {
     dispatch(getAllComments(post._id));
   }, []);
 
-  
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <div className="post-container">
-        <div className="menu-container">
+    <Box>
+      <Box className="post-container">
+        <Box className="menu-container">
           <span className="dis-row">
-            <img
-              className="avatar-img"
-              src="https://resize.indiatvnews.com/en/resize/newbucket/715_-/2016/05/shaktiman-1462557537.jpg"
-            />
+            <img className="avatar-img" src={post.userAvtar} />
             <h3 className="user-name">{post.username}</h3>
             <p className="user-id">@{post.username}</p>
           </span>
@@ -62,14 +59,15 @@ const Post = ({ post }) => {
           <span>
             <Menu>
               <MenuButton className="edit-btn" as={Button}>
-                :
+                <IoOptions />
               </MenuButton>
 
               <MenuList>
                 <MenuItem
                   onClick={() => {
                     onOpen();
-                    dispatch(getUserId(post._id));
+                    token ? dispatch(getUserId(post._id)) : navigate("/login");
+
                     setEditModal(true);
                   }}
                 >
@@ -80,7 +78,9 @@ const Post = ({ post }) => {
                 )}
                 <MenuItem
                   onClick={() => {
-                    dispatch(deletePosts(post._id));
+                    token ? 
+                    dispatch(deletePosts(post._id)) :
+                    navigate("/login")
                   }}
                 >
                   Delete
@@ -88,7 +88,7 @@ const Post = ({ post }) => {
               </MenuList>
             </Menu>{" "}
           </span>
-        </div>
+        </Box>
 
         <section className="post-text"> {post.content}</section>
         <span className="post-bottom-icons">
@@ -96,46 +96,41 @@ const Post = ({ post }) => {
             <p
               className="icon"
               onClick={() =>
-                token ? 
-                dispatch(removeLike(post._id)) :
-                navigate("/login")
+                token ? dispatch(removeLike(post._id)) : navigate("/login")
               }
             >
-              <AiFillLike />
+             <Box className="dis-row"><AiFillLike /><span>{post?.likes?.likeCount}</span></Box> 
             </p>
           ) : (
             <p
               className="icon"
-              onClick={() => 
-                token ?
-                dispatch(addToLike(post._id)) :
-                navigate("/login")
+              onClick={() =>
+                token ? dispatch(addToLike(post._id)) : navigate("/login")
               }
             >
               <AiOutlineLike />
             </p>
           )}
 
-          <Button
-            className="icon"
+          <button
+            className="comment-btn"
             onClick={() => {
               onOpen();
-              dispatch(getSelectedPost(post));
+              token ? dispatch(getSelectedPost(post)) : navigate("/login")
+              
               setCommentModal(true);
               setEditCommentModal(false);
             }}
           >
             {commentModal && <CommentModal onClose={onClose} isOpen={isOpen} />}
             <BiComment />
-          </Button>
+          </button>
 
           {isBookMarked ? (
             <p
               className="icon"
-              onClick={() => 
-                token ? 
-                dispatch(removeBookmark(post._id)) : 
-                navigate("/login")
+              onClick={() =>
+                token ? dispatch(removeBookmark(post._id)) : navigate("/login")
               }
             >
               <BsFillBookmarkFill />
@@ -144,16 +139,14 @@ const Post = ({ post }) => {
             <p
               className="icon"
               onClick={() =>
-                token ? 
-                dispatch(addToBookmark(post._id)):
-                navigate("/login")
+                token ? dispatch(addToBookmark(post._id)) : navigate("/login")
               }
             >
               <BsBookmark />
             </p>
           )}
         </span>
-      </div>
+      </Box>
 
       {post?.comments?.map((commentData) => {
         return (
@@ -162,11 +155,8 @@ const Post = ({ post }) => {
             justifyContent="space-between"
             padding="0.5rem"
             w="100%"
-            color="black"
-            boxShadow="xs"
             p="6"
             rounded="md"
-            bg="white"
           >
             <Box display="flex" padding="0.5rem">
               <Box padding="0.5rem">
@@ -174,7 +164,7 @@ const Post = ({ post }) => {
                   <Avatar
                     size="xs"
                     name="Dan Abrahmov"
-                    src="https://bit.ly/dan-abramov"
+                    src={commentData?.userAvtar}
                   />
                 </WrapItem>
               </Box>
@@ -203,25 +193,13 @@ const Post = ({ post }) => {
                   {editCommentModal && (
                     <EditCommentModal onClose={onClose} isOpen={isOpen} />
                   )}
-                  <MenuItem
-                    onClick={() => {
-                      dispatch(
-                        deleteUserComment({
-                          id: post._id,
-                          commentId: commentData._id,
-                        })
-                      );
-                    }}
-                  >
-                    Delete
-                  </MenuItem>
                 </MenuList>
               </Menu>
             </Box>
           </Box>
         );
       })}
-    </div>
+    </Box>
   );
 };
 

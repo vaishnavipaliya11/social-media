@@ -1,15 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
 import "./login.css";
-import { useAuth } from "../../context/authContext";
+import { Box } from "@chakra-ui/react";
 import { userLogin } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ username: "", password: "" });
-
-  const { auth, setAuth } = useAuth();
 
   const navigate = useNavigate();
 
@@ -51,11 +48,11 @@ const Login = () => {
     
   };
   return (
-    <div className="form-container">
-      <div className="validation">
+    <Box className="form-container">
+      <Box className="validation">
         <h2>Login</h2>
         <form action="">
-          <div className="input-wrapper">
+          <Box className="input-wrapper">
             <input
               name="username"
               type="text"
@@ -63,34 +60,35 @@ const Login = () => {
               placeholder="Enter your Username"
               onChange={(e) => onChangehandler(e)}
             />
-          </div>
-          <div className="input-wrapper">
+          </Box>
+          <Box className="input-wrapper">
             <input
               className="form-input"
               name="password"
-              class="form-input"
+             type="password"
+             
               placeholder="Enter your password"
               onChange={(e) => onChangehandler(e)}
             />
-          </div>
+          </Box>
 
-          <div className="form-footer-one">
+          <Box className="form-footer-one">
             <button className="remove-card-btn" onClick={(e) => testHandler(e)}>
               Guest Login
             </button>
             <button className="remove-card-btn" onClick={(e) => handelLogin(e)}>
               Login
             </button>
-          </div>
+          </Box>
 
-          <div className="form-footer">
+          <Box className="form-footer">
             <p> Don't have an account ?</p>
 
             <Link to="/sign">Create an account</Link>
-          </div>
+          </Box>
         </form>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

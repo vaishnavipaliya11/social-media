@@ -47,7 +47,6 @@ export const editUserComment = createAsyncThunk(
   "post/editcomment",
   async({id,commentId,commentData})=>{
     const token = localStorage.getItem("token");
-    console.log("com Data", commentData);
     try {
       const {data}= await axios.post(
         `/api/comments/edit/${id}/${commentId}`,

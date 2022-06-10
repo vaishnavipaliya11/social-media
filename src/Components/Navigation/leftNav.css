@@ -33,8 +33,9 @@
 .top-nav{
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-end;
+ padding: 0.5rem
 }
 .top-nav h3{
   margin: 0.5rem;

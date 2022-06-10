@@ -19,27 +19,19 @@ export const posts = [
     username: "adarshbalika",
     userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
     createdAt: "2022/01/01",
-    
+    userAvtar:"https://minimaltoolkit.com/images/randomdata/female/101.jpg",
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
-text:"true",
+        username: "mohit kumar",
+        text: "true",
+        userAvtar:"https://minimaltoolkit.com/images/randomdata/male/95.jpg",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
         },
       },
-      // {
-      //   _id: uuid(),
-      //   username: "sohamshah",
-      //   text:"but it takes intrest too",
-      //   votes: {
-      //     upvotedBy: [],
-      //     downvotedBy: [],
-      //   },
-      // },
     ],
   },
   {
@@ -50,28 +42,10 @@ text:"true",
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "Shraddha",
     userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
-    comments: [
-      // {
-      //   _id: uuid(),
-      //   username: "shubhamsoni",
-      //   text:"that's the reason of using react",
-      //   votes: {
-      //     upvotedBy: [],
-      //     downvotedBy: [],
-      //   },
-      // },
-      {
-        _id: uuid(),
-        username: "sohamshah",
-        text:"true",
-        votes: {
-          upvotedBy: [],
-          downvotedBy: [],
-        },
-      },
-    ],
+    userAvtar:"https://minimaltoolkit.com/images/randomdata/female/11.jpg",
+    comments: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
@@ -84,22 +58,15 @@ text:"true",
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbad",
+    username: "Shivam",
     userId: "0af3d380-4d9e-4b80-88af-b0a59483de44",
+    userAvtar:"https://minimaltoolkit.com/images/randomdata/male/12.jpg",
     comments: [
-      // {
-      //   _id: uuid(),
-      //   username: "shubhamsoni",
-      //   text:"true",
-      //   votes: {
-      //     upvotedBy: [],
-      //     downvotedBy: [],
-      //   },
-      // },
       {
         _id: uuid(),
-        username: "sohamshah",
-        text:"true",
+        username: "",
+        text: "yes i have experienced this.",
+        userAvtar:"https://minimaltoolkit.com/images/randomdata/female/101.jpg",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

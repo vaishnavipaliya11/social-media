@@ -1,46 +1,38 @@
 @import url("../../styles.css");
 .user-profile {
-    color: #1e293b;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .profile-img {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    margin: 1rem;
-  }
-  .profile-bio {
-    color: #1e293b;
-  }
- 
-  .user-stats h4 {
-    margin: 0;
-  }
-  .user-stats .dis-col {
-    margin: 5px;
-  }
-  .edit-profile {
-    padding: 0.5rem;
-    border-radius: 2px;
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-img {
+  border-radius: 50%;
+  margin: 1rem;
+}
 
-  .dis-col {
-    display: flex;
-    flex-direction: column;
-  }
-  .dis-row {
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    align-items: center;
-  }
-  .space-around {
-    justify-content: space-around;
-    align-content: center;
-    align-items: center;
-  }
+.user-stats h4 {
+  margin: 0;
+}
+.user-stats .dis-col {
+  margin: 5px;
+}
+.edit-profile {
+  padding: 0.5rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
 
-  
+.dis-col {
+  display: flex;
+  flex-direction: column;
+}
+.dis-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+.space-around {
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
