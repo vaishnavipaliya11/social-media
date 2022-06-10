@@ -17,21 +17,25 @@ export const TopNav = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box className="top-nav">
-      <header>
-        <Button onClick={toggleColorMode}>
-          <MdOutlineDarkMode /> {colorMode === "light" ? "" : ""}
-        </Button>
-      </header>
+      <h1>Infinte-Spaces</h1>
 
-      {token ? (
-        <h3>
-          <FaSignOutAlt onClick={() => logOutHandler()} />
-        </h3>
-      ) : (
-        <h3 onClick={() => navigate("/login")}>
-          <FaUserAlt />
-        </h3>
-      )}
+      <Box className="dis-row">
+        <header>
+          <Button onClick={toggleColorMode}>
+            <MdOutlineDarkMode /> {colorMode === "light" ? "" : ""}
+          </Button>
+        </header>
+
+        {token ? (
+          <h3>
+            <FaSignOutAlt onClick={() => logOutHandler()} />
+          </h3>
+        ) : (
+          <h3 onClick={() => navigate("/login")}>
+            <FaUserAlt />
+          </h3>
+        )}
+      </Box>
     </Box>
   );
 };
