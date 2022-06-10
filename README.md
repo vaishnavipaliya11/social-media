@@ -41,3 +41,10 @@
 <li>Redux toolkit + React-Redux</li>
 <li>Chakra Ui</li>
 
+![image](https://user-images.githubusercontent.com/81965405/173003336-5f5414bb-0343-46fd-913c-b5a00f12a93d.png)
+![image](https://user-images.githubusercontent.com/81965405/173003503-0e8d5bfd-e9cc-4a2c-9aea-03dca389296a.png)
+![image](https://user-images.githubusercontent.com/81965405/173003548-ed0a7ae6-2c83-4f9f-859d-dca3ecbed274.png)
+![image](https://user-images.githubusercontent.com/81965405/173003613-99711fcb-2ad3-44bf-b31b-7fda935ff946.png)
+
+
+
