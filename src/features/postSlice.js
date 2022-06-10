@@ -84,7 +84,6 @@ export const deletePosts = createAsyncThunk("post/delete", async (id) => {
 });
 
 export const addToLike = createAsyncThunk("like/add", async (postId,{rejectWithValue}) => {
-  console.log(postId);
   const token = localStorage.getItem("token");
   try {
     const { data } = await axios.post(
@@ -95,7 +94,6 @@ export const addToLike = createAsyncThunk("like/add", async (postId,{rejectWithV
       }
     );
 
-    console.log("ad to like",data);
     return data.posts;
   } catch (error) {
 
@@ -114,8 +112,6 @@ export const removeLike = createAsyncThunk("like/remove", async (postId,{rejectW
         headers: { authorization: token },
       }
     );
-
-    console.log("remove to like",data);
     return data.posts;
   } catch (error) {
     return rejectWithValue(error.message);
