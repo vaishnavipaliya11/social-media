@@ -17,12 +17,14 @@ export const EdiPostModal = ({ isOpen, onClose }) => {
   const [edittedPost, setEdittedPost] = useState("");
 
   const dispatch = useDispatch();
-  const { id } = useSelector((store) => store.post);
+  const { id,post } = useSelector((store) => store.post);
 
   const editHandler = () => {
     dispatch(editPosts({ edittedPost, id }));
     onClose();
   };
+  const specificPost = post.find((eachpost) => eachpost._id === id)
+  console.log(specificPost);
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -31,7 +33,8 @@ export const EdiPostModal = ({ isOpen, onClose }) => {
           <ModalHeader>Edit Tweet</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input onChange={(e) => setEdittedPost(e.target.value)} />
+            <Input defaultValue={specificPost} 
+            onChange={(e) => setEdittedPost(e.target.value)} />
           </ModalBody>
 
           <ModalFooter>

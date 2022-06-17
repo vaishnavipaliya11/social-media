@@ -34,9 +34,9 @@ export const Profile = () => {
         </div>
       ) : (
         <div>
-          <button onClick={() => dispatch(followUserApi(currentUser._id))}>
-            follow
-          </button>
+        <button className="btn-follow" onClick={() => dispatch(followUserApi(currentUser._id))}>
+        Follow
+      </button>
         </div>
       )}
 

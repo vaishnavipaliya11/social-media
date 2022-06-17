@@ -24,7 +24,7 @@ import {
   getCommentId,
 } from "../../features/postSlice";
 import { addToBookmark, removeBookmark } from "../../features/bookmarkSlice";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { addToLike, removeLike } from "../../features/postSlice";
 import { CommentModal } from "../modal/commentModal";
 import { deleteUserComment, getAllComments } from "../../features/commentApi";
@@ -34,7 +34,7 @@ const Post = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const { bookmark } = useSelector((store) => store.bookmark);
-  const { token } = useSelector((store) => store.timeline);
+  const { token,user } = useSelector((store) => store.timeline);
   const [editModal, setEditModal] = useState(false);
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
@@ -46,14 +46,15 @@ const Post = ({ post }) => {
 
   const navigate = useNavigate();
 
+ 
   return (
     <Box>
       <Box className="post-container">
         <Box className="menu-container">
           <span className="dis-row">
-            <img className="avatar-img" src={post.userAvtar} />
-            <h3 className="user-name">{post.username}</h3>
-            <p className="user-id">@{post.username}</p>
+            <img className="avatar-img" src={post?.userAvtar || user.userImage} />
+            <h3 className="user-name">{post?.username}</h3>
+            <p className="user-id">@{post?.username}</p>
           </span>
 
           <span>
@@ -78,9 +79,9 @@ const Post = ({ post }) => {
                 )}
                 <MenuItem
                   onClick={() => {
-                    token ? 
-                    dispatch(deletePosts(post._id)) :
-                    navigate("/login")
+                    token
+                      ? dispatch(deletePosts(post._id))
+                      : navigate("/login");
                   }}
                 >
                   Delete
@@ -90,7 +91,10 @@ const Post = ({ post }) => {
           </span>
         </Box>
 
+        <Link to={`/singlepost/${post._id}`}>
         <section className="post-text"> {post.content}</section>
+        </Link>
+    
         <span className="post-bottom-icons">
           {post?.likes?.likeCount >= 1 ? (
             <p
@@ -99,7 +103,10 @@ const Post = ({ post }) => {
                 token ? dispatch(removeLike(post._id)) : navigate("/login")
               }
             >
-             <Box className="dis-row"><AiFillLike /><span>{post?.likes?.likeCount}</span></Box> 
+              <Box className="dis-row">
+                <AiFillLike />
+                <span>{post?.likes?.likeCount}</span>
+              </Box>
             </p>
           ) : (
             <p
@@ -116,8 +123,8 @@ const Post = ({ post }) => {
             className="comment-btn"
             onClick={() => {
               onOpen();
-              token ? dispatch(getSelectedPost(post)) : navigate("/login")
-              
+              token ? dispatch(getSelectedPost(post)) : navigate("/login");
+
               setCommentModal(true);
               setEditCommentModal(false);
             }}
@@ -163,8 +170,8 @@ const Post = ({ post }) => {
                 <WrapItem>
                   <Avatar
                     size="xs"
-                    name="Dan Abrahmov"
-                    src={commentData?.userAvtar}
+                    
+                    src={commentData?.userAvtar || user?.userImage}
                   />
                 </WrapItem>
               </Box>
@@ -189,6 +196,14 @@ const Post = ({ post }) => {
                     }}
                   >
                     Edit
+                  </MenuItem>
+
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(deleteUserComment({id:post._id, commentId:commentData._id}));
+                    }}
+                  >
+                    delete
                   </MenuItem>
                   {editCommentModal && (
                     <EditCommentModal onClose={onClose} isOpen={isOpen} />

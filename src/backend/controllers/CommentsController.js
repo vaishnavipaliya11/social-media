@@ -34,7 +34,7 @@ export const getPostCommentsHandler = function (schema, request) {
 
 export const addPostCommentHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
- 
+ console.log(user);
   try {
     if (!user) {
       return new Response(
@@ -53,6 +53,7 @@ export const addPostCommentHandler = function (schema, request) {
       _id: uuid(),
       text:commentData,
       username: user.username,
+     
       votes: { upvotedBy: [], downvotedBy: [] },
       createdAt: formatDate(),
       updatedAt: formatDate(),

@@ -15,6 +15,7 @@ import { Home } from "./Pages/home/Home";
 import { PostModal } from "./Components/modal/postModal";
 import Mockman from "mockman-js";
 import { SingleProfile } from "./Pages/singleProfile/SingleProfile";
+import { SinglePost } from "./Pages/singlepost/SinglePost";
 function App() {
   return (
     <div className="App">
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/testApi" element={<Mockman />} />
           <Route path="/singleprofile" element={<SingleProfile />} />
+          <Route path="/singlepost/:postId" element={<SinglePost />} />
         </Routes>
         <Sidecard />
       

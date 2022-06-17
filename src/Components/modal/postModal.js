@@ -12,11 +12,10 @@ import {
   Box,
 } from "@chakra-ui/react";
 
-
 import { useSelector, useDispatch } from "react-redux";
 import { createPosts } from "../../features/postSlice.js";
 import { useNavigate } from "react-router-dom";
-import "./modal.css"
+import "./modal.css";
 
 export const PostModal = ({ isOpen, onClose }) => {
   const [userTweet, setUserTweet] = useState("");
@@ -32,7 +31,7 @@ export const PostModal = ({ isOpen, onClose }) => {
 
   return (
     <Box>
-      <Modal isOpen={isOpen} onClose={onClose}   backgroundColor='tomato'>
+      <Modal isOpen={isOpen} onClose={onClose} backgroundColor="tomato">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Let's Tweet</ModalHeader>
@@ -57,8 +56,10 @@ export const PostModal = ({ isOpen, onClose }) => {
               <Button
                 className="tweet-btn"
                 variant="ghost"
-                onClick={() => tweetHandler()}
-                disabled
+                onClick={() => {
+                  onClose();
+                  navigate("/login");
+                }}
               >
                 {" "}
                 Tweet

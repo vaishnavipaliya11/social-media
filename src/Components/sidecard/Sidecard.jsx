@@ -17,8 +17,7 @@ export const Sidecard = () => {
   const { allusers } = useSelector((store) => store.user);
 
   const { token, user } = useSelector((store) => store.timeline);
-  const navigate= useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <Box className="who-to-follow">
@@ -44,17 +43,29 @@ export const Sidecard = () => {
                       {followers?.find(
                         (eachuser) => eachuser?.username === user?.username
                       ) ? (
-                        <button className="btn-follow" onClick={() => dispatch(unfollowUser(_id))}>
+                        <button
+                          className="btn-follow"
+                          onClick={() => dispatch(unfollowUser(_id))}
+                        >
                           Unfollow
                         </button>
                       ) : (
-                        <button className="btn-follow" onClick={() => dispatch(followUserApi(_id))}>
+                        <button
+                          className="btn-follow"
+                          onClick={() => dispatch(followUserApi(_id))}
+                        >
                           Follow
                         </button>
                       )}
                     </div>
                   ) : (
-                    <button className="btn-follow" onClick={() => navigate("/login")}> follow </button>
+                    <button
+                      className="btn-follow"
+                      onClick={() => navigate("/login")}
+                    >
+                      {" "}
+                      follow{" "}
+                    </button>
                   )}
                 </div>
               </Box>

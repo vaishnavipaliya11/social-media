@@ -39,7 +39,7 @@ export const followUserApi = createAsyncThunk(
     "users/follow",
     async(_id) =>{
         const token = localStorage.getItem("token")
-        console.log(token);
+        console.log(_id);
         try {
             const {data}= await axios.post(
                 `api/users/follow/${_id}`,

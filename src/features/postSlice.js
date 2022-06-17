@@ -130,6 +130,7 @@ export const postSlice = createSlice({
     },
 
     getCommentId: (state, action) => {
+      console.log("comem");
       state.commentId = action.payload;
     },
   },
@@ -254,6 +255,26 @@ export const postSlice = createSlice({
       state.post.find((item) => item._id === state.id).comments = payload;
     },
     [editUserComment.rejected]: (state) => {
+      state.status = "rejected";
+      state.error = true;
+    },
+    [deleteUserComment.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [deleteUserComment.fulfilled]: (state, { payload }) => {
+      state.status = "succeed";
+      state.error = null;
+      state.post = state.post.map((eachpost) =>
+        eachpost._id === state.singlePost._id
+          ? {
+              ...eachpost,
+              comments: payload,
+            }
+          : eachpost
+      );
+    },
+    [deleteUserComment.rejected]: (state) => {
       state.status = "rejected";
       state.error = true;
     },
