@@ -5,6 +5,7 @@ import "./login.css";
 import { Box } from "@chakra-ui/react";
 import { userLogin } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ username: "", password: "" });
 
@@ -22,7 +23,7 @@ const Login = () => {
     try {
       e.preventDefault();
       const res = await dispatch(
-        userLogin({ username: 'adarshbalika', password: 'adarshBalika123' })
+        userLogin({ username: 'vaishnavi', password: 'vaishnavi123' })
       );
       navigate("/")
     } catch (error) {

@@ -16,10 +16,12 @@ import { PostModal } from "./Components/modal/postModal";
 import Mockman from "mockman-js";
 import { SingleProfile } from "./Pages/singleProfile/SingleProfile";
 import { SinglePost } from "./Pages/singlepost/SinglePost";
+import {Toaster} from "react-hot-toast"
 function App() {
   return (
     <div className="App">
       <TopNav />
+      <Toaster/>
       <div className="page-container">
         <LeftNav />
 

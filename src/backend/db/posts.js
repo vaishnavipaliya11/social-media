@@ -16,7 +16,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    username: "vaishnavi",
     userId: "0af3d380-4d9e-4b80-88af-b0a59483de42",
     createdAt: "2022/01/01",
     userAvtar:"https://minimaltoolkit.com/images/randomdata/female/101.jpg",
@@ -64,7 +64,7 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "",
+        username: "vaishnavi",
         text: "yes i have experienced this.",
         userAvtar:"https://minimaltoolkit.com/images/randomdata/female/101.jpg",
         votes: {

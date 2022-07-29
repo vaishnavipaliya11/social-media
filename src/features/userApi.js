@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import toast from "react-hot-toast";
 export const editUserProfile = createAsyncThunk(
     "user/edit",
     async(userdata) =>{
@@ -42,13 +42,13 @@ export const followUserApi = createAsyncThunk(
         console.log(_id);
         try {
             const {data}= await axios.post(
-                `api/users/follow/${_id}`,
+                `/api/users/follow/${_id}`,
                 {},
                 {
                     headers:{authorization:token}
                 }
             )
-            console.log("follow user",data);
+            toast.success("followed user")
             return data
         } catch (error) {
             console.log(error);
@@ -62,13 +62,13 @@ export const unfollowUser = createAsyncThunk(
         const token = localStorage.getItem("token")
         try {
             const {data}= await axios.post(
-                `api/users/unfollow/${_id}`,
+                `/api/users/unfollow/${_id}`,
                 {},
                 {
                     headers:{authorization:token}
                 }
             )
-            console.log("unfollow user",data);
+            toast.success("unfollow user")
             return data
         } catch (error) {
             console.log(error);

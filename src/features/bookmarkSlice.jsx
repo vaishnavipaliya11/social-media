@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import toast from "react-hot-toast";
 const initialState = {
   error: "false",
   bookmark: [],
@@ -36,6 +36,7 @@ export const addToBookmark = createAsyncThunk(
         }
       );
      
+      toast.success("added to bookmark!")
       return data.bookmarks;
     } catch (error) {
       console.log(error.data);
@@ -53,6 +54,7 @@ export const removeBookmark = createAsyncThunk("bookmark/delete", async (postId)
         headers: { authorization: token },
       }
     );
+    toast.success("removed from bookmark!")
     return data.bookmarks
   } catch (error) {
     console.error(error);

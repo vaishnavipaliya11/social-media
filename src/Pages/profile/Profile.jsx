@@ -32,12 +32,20 @@ export const Profile = () => {
           </Button>
           {<EditProfile onClose={onClose} isOpen={isOpen} />}
         </div>
+      ) :currentUser?.followers.find(eachuser => eachuser?.username === user?.username) ? (
+        <button
+          onClick={() => dispatch(unFollowUser(currentUser._id))}
+          className="btn-follow"
+        >
+          Unfollow
+        </button>
       ) : (
-        <div>
-        <button className="btn-follow" onClick={() => dispatch(followUserApi(currentUser._id))}>
-        Follow
-      </button>
-        </div>
+        <button
+          onClick={() => dispatch(followUserApi(currentUser._id))}
+          className="btn-follow"
+        >
+          Follow
+        </button>
       )}
 
       <Box className="profile-bio pd-med">{currentUser?.bio}</Box>
@@ -60,6 +68,7 @@ export const Profile = () => {
               followers
             </Heading>
           </Box>
+         
         </Box>
       </Box>
     </Box>

@@ -39,9 +39,11 @@ const Post = ({ post }) => {
   const [editCommentModal, setEditCommentModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
 
+  console.log("user",user);
+
   const isBookMarked = bookmark?.find((postId) => postId === post._id);
   useEffect(() => {
-    dispatch(getAllComments(post._id));
+    dispatch(getAllComments(post?._id));
   }, []);
 
   const navigate = useNavigate();
@@ -91,8 +93,8 @@ const Post = ({ post }) => {
           </span>
         </Box>
 
-        <Link to={`/singlepost/${post._id}`}>
-        <section className="post-text"> {post.content}</section>
+        <Link to={`/singlepost/${post?._id}`}>
+        <section className="post-text"> {post?.content}</section>
         </Link>
     
         <span className="post-bottom-icons">
@@ -175,7 +177,7 @@ const Post = ({ post }) => {
                   />
                 </WrapItem>
               </Box>
-              <Box display="flex" flexDirection="column" padding="0.5rem">
+              <Box display="flex" flexDirection="column" padding="0.5rem" justifyContent="flex-start" alignItems="flex-start">
                 <Heading size="lg" fontSize="10px">
                   {commentData?.username}
                 </Heading>
@@ -184,7 +186,10 @@ const Post = ({ post }) => {
             </Box>
             <Box>
               <Menu>
+              {user?.username === commentData?.username ? 
                 <MenuButton as={Button}>:</MenuButton>
+              : ""}
+                
                 <MenuList>
                   <MenuItem
                     onClick={() => {

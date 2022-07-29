@@ -6,6 +6,7 @@ import {
   editUserComment,
   getAllComments,
 } from "./commentApi";
+import toast from "react-hot-toast";
 
 const initialState = {
   post: [],
@@ -37,7 +38,7 @@ export const createPosts = createAsyncThunk("post/createPost", async (post) => {
       data: { postData: post },
       headers: { authorization: token },
     });
-    console.log(response);
+    toast.success("created post")
     return response;
   } catch (error) {
     console.log(error.response);
@@ -60,6 +61,7 @@ export const editPosts = createAsyncThunk(
           },
         }
       );
+      toast.success("edited post")
       return data;
     } catch (error) {
       console.log(error.response);
@@ -77,6 +79,7 @@ export const deletePosts = createAsyncThunk("post/delete", async (id) => {
         authorization: token,
       },
     });
+    toast.success("deleted post")
     return data;
   } catch (error) {
     console.log(error);
@@ -93,7 +96,7 @@ export const addToLike = createAsyncThunk("like/add", async (postId,{rejectWithV
         headers: { authorization: token },
       }
     );
-
+      toast.success("added to like")
     return data.posts;
   } catch (error) {
 
@@ -112,6 +115,7 @@ export const removeLike = createAsyncThunk("like/remove", async (postId,{rejectW
         headers: { authorization: token },
       }
     );
+    toast.success("removed from like")
     return data.posts;
   } catch (error) {
     return rejectWithValue(error.message);

@@ -22,7 +22,7 @@ export const TopNav = () => {
       <Box className="dis-row">
         <header>
           <Button onClick={toggleColorMode}>
-            <MdOutlineDarkMode /> {colorMode === "light" ? "" : ""}
+            <MdOutlineDarkMode /> {colorMode === 'dark' ? '' : ''}
           </Button>
         </header>
 

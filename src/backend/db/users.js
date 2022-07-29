@@ -8,14 +8,14 @@ import { formatDate } from "../utils/authUtils";
 export const users = [
   {
     _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
-    username: "adarshbalika",
-    password: "adarshBalika123",
+    firstName: "Vaishnavi",
+    lastName: "Paliya",
+    username: "vaishnavi",
+    password: "vaishnavi123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     bio:"tweet about web dev",
-    portfolio:"www.adarshBalika.com",
+    portfolio:"www.vaishnavipaliya.com",
     userImage:"https://minimaltoolkit.com/images/randomdata/female/101.jpg"
   },
   {

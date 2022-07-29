@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import toast from "react-hot-toast";
 export const addComment = createAsyncThunk(
   "post/comment",
   async ({   commentData, _id }) => {
@@ -17,6 +17,7 @@ export const addComment = createAsyncThunk(
           },
         }
       );
+      toast.success("added comment")
       return data.comments
     } catch (error) {
       console.log(error);
@@ -55,7 +56,7 @@ export const editUserComment = createAsyncThunk(
           headers: {authorization:token}
         }
       )
-      
+      toast.success("edited comment!")
     return data.comments
     } catch (error) {
       console.log(error);
@@ -77,7 +78,7 @@ export const deleteUserComment = createAsyncThunk(
           headers:{authorization:token}
         }
       )
-      console.log(data);
+      toast.success("deleted comment!")
       return data.comments
     } catch (error) {
       
